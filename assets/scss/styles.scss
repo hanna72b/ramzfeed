@@ -1,5 +1,7 @@
 @import 'font';
 @import '~vuetify/src/styles/settings/_variables';
+@import 'md';
+@import 'sm';
 
 html,
 body,
@@ -18,6 +20,34 @@ textarea {
 }
 
 .video-list-front {
+  .player-icon {
+    font-size: 14px !important;
+    text-align: center;
+    width: 100%;
+    color: #ffe100;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    background: #4e12c7;
+    z-index: 99;
+    width: 160px;
+    padding: 6px;
+    font-weight: bold;
+    height: 38px;
+    span {
+      position: absolute;
+      right: 54px !important;
+      font-size: 16px;
+      top: 6px;
+    }
+    i {
+      position: absolute;
+      right: 18px;
+      font-size: 31px;
+      top: 3px;
+      color: #fff;
+    }
+  }
   .orig-cover {
     width: 100%;
     border-radius: 4px;
@@ -74,7 +104,7 @@ textarea {
     display: table-cell;
     position: absolute;
     bottom: 0px;
-
+    width: 100%;
     z-index: 9999;
 
     .video-title {

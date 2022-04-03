@@ -1,0 +1,17 @@
+@media #{map-get($display-breakpoints, 'sm-and-down')} {
+  .video-list-front {
+    border: 1px solid green;
+
+    img {
+      width: 40% !important;
+    }
+
+    .video-title {
+      font-size: 1rem !important;
+    }
+
+    .video-by {
+      font-size: 1rem !important;
+    }
+  }
+}

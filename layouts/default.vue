@@ -3,7 +3,7 @@
     <v-app id="inspire">
       <v-container>
         <v-row justify="center">
-          <v-col cols="12" md="11" lg="11" xl="9">
+          <v-col cols="12" md="12" lg="11" xl="9">
             <v-row justify="center" class="my-8">
               <v-col>
                 <div class="d-flex">
