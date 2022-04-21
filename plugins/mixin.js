@@ -8,41 +8,21 @@ Vue.mixin({
     getPath(path) {
       let prefix = null
       switch (path) {
-        case 'cover':
-          prefix = 'cover/'
+        case 'twitter':
+          prefix = 'twitter/'
           break
-
-         case 'logo':
-          prefix = 'logo/'
+        
+        case 'long_news':
+          prefix = 'long_news/'
           break
-
-         case 'news':
-          prefix = 'post/'
+         
+        case 'article':
+          prefix = 'articles/'
           break
-
-        case 'pic':
-          prefix = 'pic/'
-          break
-        // case 'clubs':
-        //   prefix = 'clubs/'
-        //   break
-        // case 'coachs':
-        //   prefix = 'coachs/'
-        //   break
-        // case 'referees':
-        //   prefix = 'referee/'
-        //   break
-        // case 'leagues':
-        //   prefix = 'leagues/'
-        //   break
-        // case 'players':
-        //   prefix = 'players/'
-        //   break
-        // case 'avatar':
-        //   prefix = 'avatars/'
-        //   break
       }
-      return `https://ecosystem.ir/media/${prefix}`
+      console.log(`${this.$baseUrl}/storage/uploads/${prefix}`);
+      return `${this.$baseUrl}/storage/uploads/${prefix}`
+    
     },
 
     /**

@@ -3,6 +3,8 @@
 @import 'md';
 @import 'sm';
 
+
+
 html,
 body,
 .application,
@@ -17,7 +19,36 @@ h6,
 input,
 textarea {
   font-family: IRANSans, sans-serif !important;
+
 }
+
+a{
+  text-decoration: none 
+}
+
+.v-navigation-drawer__content {
+  border-right: 5px solid #ffbe00 !important;
+}
+
+.news-title::-webkit-scrollbar , .news-title-short::-webkit-scrollbar {
+  width: 12px;
+  /* width of the entire scrollbar */
+}
+
+.news-title::-webkit-scrollbar-track , .news-title-short::-webkit-scrollbar-track{
+  background: rgb(57, 57, 57);
+  /* color of the tracking area */
+}
+
+.news-title::-webkit-scrollbar-thumb  , .news-title-short::-webkit-scrollbar-thumb{
+  background-color: rgb(74, 74, 74);
+  /* color of the scroll thumb */
+  border-radius: 20px;
+  /* roundness of the scroll thumb */
+  border: 3px solid rgb(57, 57, 57);
+  /* creates padding around scroll thumb */
+}
+
 
 .video-list-front {
   .player-icon {
@@ -224,3 +255,55 @@ textarea {
     padding: 10px;
   }
 }
+
+
+.front{
+  .front-news{
+
+    .news-title{
+  display: block;
+  flex: 1 1 auto;
+  height: calc(100vh - 90px);
+  overflow: auto;
+  position: relative;
+
+  display: flex;
+
+
+    .inner{
+    
+          
+          
+    }
+    }
+
+      .news-title-short {
+        display: block;
+
+        height: calc(50vh - 110px);
+        overflow: auto;
+        position: relative;
+      
+        display: flex;
+      
+      
+        .inner {
+      
+         
+        }
+      }
+  }
+
+  
+
+}
+
+.divider-1{
+    width: 96%;
+    height: 3px;
+    background-color: #525252;
+    border-radius: 11px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
