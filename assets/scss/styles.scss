@@ -30,17 +30,23 @@ a{
   border-right: 5px solid #ffbe00 !important;
 }
 
-.news-title::-webkit-scrollbar , .news-title-short::-webkit-scrollbar {
+.news-title::-webkit-scrollbar ,
+ .news-title-short::-webkit-scrollbar,
+ .tweets-in-front::-webkit-scrollbar {
   width: 12px;
   /* width of the entire scrollbar */
 }
 
-.news-title::-webkit-scrollbar-track , .news-title-short::-webkit-scrollbar-track{
+.news-title::-webkit-scrollbar-track ,
+.news-title-short::-webkit-scrollbar-track,
+.tweets-in-front::-webkit-scrollbar-track {
   background: rgb(57, 57, 57);
   /* color of the tracking area */
 }
-
-.news-title::-webkit-scrollbar-thumb  , .news-title-short::-webkit-scrollbar-thumb{
+.news-title::-webkit-scrollbar-thumb, 
+.news-title-short::-webkit-scrollbar-thumb,
+.tweets-in-front::-webkit-scrollbar-thumb 
+{
   background-color: rgb(74, 74, 74);
   /* color of the scroll thumb */
   border-radius: 20px;
@@ -258,43 +264,31 @@ a{
 
 
 .front{
-  .front-news{
+ 
 
-    .news-title{
-  display: block;
-  flex: 1 1 auto;
-  height: calc(100vh - 90px);
-  overflow: auto;
-  position: relative;
-
-  display: flex;
-
-
-    .inner{
+  .news-title{
+    display: block;
+    flex: 1 1 auto;
+    height: calc(100vh - 90px);
+    overflow: auto;
+    position: relative;
     
-          
-          
-    }
-    }
-
-      .news-title-short {
-        display: block;
-
-        height: calc(50vh - 110px);
-        overflow: auto;
-        position: relative;
-      
-        display: flex;
-      
-      
-        .inner {
-      
-         
-        }
-      }
   }
 
-  
+  .news-title-short {
+    display: block;
+    height: calc(50vh - 110px);
+    overflow: auto;
+    position: relative;
+    display: flex;    
+  }
+  .tweets-in-front{
+    display: block;
+    flex: 1 1 auto;
+  height: calc(50vh - 110px);
+    overflow: auto;
+    position: relative;
+  }
 
 }
 

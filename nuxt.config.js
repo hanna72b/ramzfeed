@@ -123,7 +123,8 @@ export default {
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
           grey_deep_1:"#202225",
-          grey_deep_0: "#36393F",
+          grey_deep_2:"#2F3136",
+         
           background: "#36393F",
           text_color_grey: "#9f9f9f",
           orange_color_1:"#ffbe00"

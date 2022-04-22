@@ -13,7 +13,10 @@
         class="mr-16"
       ></v-app-bar-nav-icon>
     </v-app-bar> -->
-
+    <v-app-bar-nav-icon
+      @click.stop="drawer = !drawer"
+      class="mr-16"
+    ></v-app-bar-nav-icon>
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -21,8 +24,8 @@
       width="100"
       color="grey_deep_1"
       floating
-      permanent
     >
+      <div class="logo-right text-center my-4">Catinex</div>
       <div v-for="(item, i) in items" :key="i" class="mt-5">
         <v-icon
           v-text="item.icon"
@@ -36,29 +39,6 @@
         </div>
         <v-divider></v-divider>
       </div>
-
-      <!-- <v-navigation-drawer
-        v-model="drawer"
-        absolute
-        color="grey lighten-3"
-        mini-variant
-      >
-        <v-avatar
-          class="d-block text-center mx-auto mt-4"
-          color="grey darken-1"
-          size="36"
-        ></v-avatar>
-
-        <v-divider class="mx-3 my-5"></v-divider>
-
-        <v-avatar
-          v-for="n in 6"
-          :key="n"
-          class="d-block text-center mx-auto mb-9"
-          color="grey lighten-1"
-          size="28"
-        ></v-avatar>
-      </v-navigation-drawer> -->
 
       <!-- <v-sheet color="grey lighten-5" height="128" width="100%"></v-sheet> -->
     </v-navigation-drawer>
@@ -76,7 +56,7 @@ export default {
     items: [
       {
         icon: 'mdi-home-analytics',
-        text: 'خـانه',
+        text: 'خـبرها',
         color: '#506266',
         link: '/',
       },
@@ -86,8 +66,8 @@ export default {
         color: '#506266',
       },
       {
-        icon: 'mdi-bluetooth',
-        text: 'Bluetooth',
+        icon: 'mdi-twitter',
+        text: 'توییت‌هـا',
         color: '#606650',
       },
       {
