@@ -13,30 +13,26 @@
         class="mr-16"
       ></v-app-bar-nav-icon>
     </v-app-bar> -->
-    <v-app-bar-nav-icon
-      @click.stop="drawer = !drawer"
-      class="mr-16"
-    ></v-app-bar-nav-icon>
+
     <v-navigation-drawer
       v-model="drawer"
       app
       right
       width="100"
       color="grey_deep_1"
-      floating
+      mobile-breakpoint="960"
+      style="border-right: 5px solid #ffbe00 !important"
     >
       <div class="logo-right text-center my-4">Catinex</div>
       <div v-for="(item, i) in items" :key="i" class="mt-5">
-        <v-icon
-          v-text="item.icon"
-          :color="item.color"
-          size="30"
-          class="mx-auto d-block text-center mt-1"
-        ></v-icon>
+        <v-btn :color="item.color" :to="item.link" icon class="mx-auto d-block">
+          <v-icon x-large class="">{{ item.icon }}</v-icon>
+        </v-btn>
 
-        <div class="text-center mb-3 mt-1 text_color_grey--text">
+        <v-btn text class="mx-auto d-block mb-3 mt-1 text_color_grey--text">
           {{ item.text }}
-        </div>
+        </v-btn>
+
         <v-divider></v-divider>
       </div>
 
@@ -46,13 +42,30 @@
     <v-main>
       <nuxt />
     </v-main>
+
+    <v-footer
+      height="70px"
+      color="grey_deep_1"
+      fixed
+      class="d-sm-flex d-md-none"
+    >
+      <currencies></currencies>
+      <v-app-bar-nav-icon
+        @click.stop="drawer = !drawer"
+        class="mr-16"
+      ></v-app-bar-nav-icon>
+      Catinex
+    </v-footer>
   </v-app>
 </template>
 
 <script>
+import currencies from '~/components/Currencies.vue'
 export default {
+  components: { currencies },
   data: () => ({
     drawer: null,
+    collapseOnScroll: true,
     items: [
       {
         icon: 'mdi-home-analytics',
@@ -64,16 +77,18 @@ export default {
         icon: 'mdi-newspaper-variant-outline',
         text: 'مقالات',
         color: '#506266',
+        link: '/articles',
       },
       {
         icon: 'mdi-twitter',
         text: 'توییت‌هـا',
-        color: '#606650',
+        color: '#506266',
+        link: '/twitter/tweets',
       },
       {
         icon: 'mdi-chart-donut',
         text: 'Data Usage',
-        color: '#606650',
+        color: '#506266',
       },
     ],
   }),

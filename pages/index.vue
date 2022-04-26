@@ -6,12 +6,13 @@
           <component :is="`lastNews`"></component>
         </keep-alive>
       </v-col>
-      <v-col cols="12" md="4" lg="4">
-        <keep-alive>
-          <component :is="`lastNewsShort`"></component>
-        </keep-alive>
+      <v-col cols="12" md="4" lg="5">
         <keep-alive>
           <component :is="`lastTweets`"></component>
+        </keep-alive>
+        <div class="divider-1"></div>
+        <keep-alive>
+          <component :is="`lastNewsShort`"></component>
         </keep-alive>
       </v-col>
     </v-row>

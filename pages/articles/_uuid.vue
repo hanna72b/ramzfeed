@@ -7,7 +7,7 @@
             <h6 class="my-2 text_color_grey--text">
               {{ news_detail.source_name }}
             </h6>
-            <v-btn small to="/">
+            <v-btn small to="/articles">
               <span>بازگشـت</span>
               <v-icon right>mdi-arrow-left</v-icon>
             </v-btn>
@@ -67,7 +67,7 @@ export default {
   methods: {
     async displayBrief() {
       console.log('ssssssssssssssssssss')
-      const response = await this.$axios.get(`/news/uuid/${this.uuid}`)
+      const response = await this.$axios.get(`/article/uuid/${this.uuid}`)
       this.news_detail = response.data.data
       console.log(this.news_detail)
     },

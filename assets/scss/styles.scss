@@ -26,9 +26,6 @@ a{
   text-decoration: none 
 }
 
-.v-navigation-drawer__content {
-  border-right: 5px solid #ffbe00 !important;
-}
 
 .news-title::-webkit-scrollbar ,
  .news-title-short::-webkit-scrollbar,
@@ -263,13 +260,12 @@ a{
 }
 
 
-.front{
- 
+
 
   .news-title{
     display: block;
     flex: 1 1 auto;
-    height: calc(100vh - 90px);
+    height: calc(100vh - 185px);
     overflow: auto;
     position: relative;
     
@@ -277,7 +273,7 @@ a{
 
   .news-title-short {
     display: block;
-    height: calc(50vh - 110px);
+    height: calc(50vh - 170px);
     overflow: auto;
     position: relative;
     display: flex;    
@@ -285,12 +281,12 @@ a{
   .tweets-in-front{
     display: block;
     flex: 1 1 auto;
-  height: calc(50vh - 110px);
+  height: calc(50vh - 150px);
     overflow: auto;
     position: relative;
   }
 
-}
+
 
 .divider-1{
     width: 96%;
@@ -301,3 +297,20 @@ a{
     margin-bottom: 20px;
 }
 
+.currencies{
+  background-color: blue;
+  height: 100%;
+  width: 100%;
+}
+
+
+.influencer{
+.profile{
+display: block;
+margin: auto;
+padding-top: 30px !important;
+flex-direction: column;
+
+text-align: center;
+}
+}

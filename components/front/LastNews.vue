@@ -7,11 +7,18 @@
         :key="index"
         class="pt-4 font-font-weight-light"
       >
-        <nuxt-link :to="`/news/${post.uuid}`" class="text_color_grey--text">
-          <h5 class="font-weight-regular">
-            {{ post.title_translated }}
-          </h5>
-        </nuxt-link>
+        <div class="d-flex">
+          <nuxt-link :to="`/news/${post.uuid}`" class="text_color_grey--text">
+            <v-avatar size="30">
+              <v-img :src="getPath('long_news') + post.image_path"></v-img>
+            </v-avatar>
+
+            <span class="font-weight-regular mr-2">
+              {{ post.title_translated }}
+            </span>
+          </nuxt-link>
+        </div>
+
         <v-divider class="mt-3"></v-divider>
       </div>
     </div>

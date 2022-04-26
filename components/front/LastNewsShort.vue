@@ -13,16 +13,14 @@
           :key="index"
           class="pt-4 font-font-weight-light"
         >
-          <nuxt-link :to="`/news/${ns.uuid}`" class="text_color_grey--text">
-            <h5 class="font-weight-regular">
-              {{ ns.title_translated }}
-            </h5>
-          </nuxt-link>
+          <h4 class="font-weight-regular text_color_grey--text">
+            {{ ns.title_translated }}
+          </h4>
+
           <v-divider class="mt-3"></v-divider>
         </div>
       </div>
     </div>
-    <div class="divider-1"></div>
   </div>
 </template>
 
