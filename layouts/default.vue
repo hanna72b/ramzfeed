@@ -23,7 +23,12 @@
       mobile-breakpoint="960"
       style="border-right: 5px solid #ffbe00 !important"
     >
-      <div class="logo-right text-center my-4">Catinex</div>
+      <div class="logo-right text-center my-4 orange--text">
+        Crypto
+
+        <br />
+        N E L L
+      </div>
       <div v-for="(item, i) in items" :key="i" class="mt-5">
         <v-btn :color="item.color" :to="item.link" icon class="mx-auto d-block">
           <v-icon x-large class="">{{ item.icon }}</v-icon>

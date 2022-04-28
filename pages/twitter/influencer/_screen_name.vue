@@ -103,7 +103,7 @@ export default {
 
     async getTweets() {
       const response = await this.$axios.get(
-        `/tweets/show/${this.influencer.id}`
+        `/influencer/tweets/show/${this.influencer.id}`
       )
       this.tweets = response.data.data
     },

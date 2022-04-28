@@ -22,8 +22,8 @@ export default {
    plugins: [
     '@/plugins/axios',
     '@/plugins/mixin',
-
     '@/plugins/dynamicDomain',
+
    
   ],
 
@@ -86,6 +86,7 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/universal-storage',
     '@nuxtjs/auth',
+
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios

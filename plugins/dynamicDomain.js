@@ -5,7 +5,7 @@ export default ({ app, req }, inject) => {
     baseUrl = 'http://localhost:8000'
     // baseUrl = 'https://api.tpbl.ir'
   } else {
-    baseUrl = 'https://api.ecosystem.ir'
+    baseUrl = 'http://api.catinex.com'
   }
 
   app.$axios.onRequest((config) => {

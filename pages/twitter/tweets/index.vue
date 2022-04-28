@@ -9,58 +9,19 @@
       زبان فارسی مشاهده کنید
     </h6>
     <div>
-      <v-row>
-        <v-col
-          v-for="(tweet, index) in tweets"
-          :key="index"
-          cols="12"
-          md="6"
-          lg="3"
-        >
-          <v-card color="grey_deep_1" class="tweets mb-5 pb-5">
-            <v-card-text class="px-10 py-0">
-              <div v-if="tweet.influencer" class="profile pt-4 mb-3">
-                <nuxt-link
-                  :to="`/twitter/influencer/${tweet.influencer.screen_name}`"
-                >
-                  <v-avatar size="60">
-                    <v-img
-                      :src="tweet.influencer.profile_image"
-                      width="100%"
-                    ></v-img>
-                  </v-avatar>
-                  <span class="d-inline-block mr-3">
-                    <h4>{{ tweet.influencer.name }}</h4>
-                    <h5>@{{ tweet.influencer.screen_name }}</h5>
-                  </span>
-                </nuxt-link>
-              </div>
-              <div class="tweet" v-html="tweet.text_translated"></div>
-              <div v-if="tweet.attachment.length" class="media">
-                <div
-                  v-for="(attachment, index) in tweet.attachment"
-                  :key="index"
-                >
-                  <div v-if="attachment.type === 'url'" class="mt-2">
-                    <a :href="attachment.url" target="_blank">{{
-                      attachment.url
-                    }}</a>
-                  </div>
-                  <div v-if="attachment.type === 'img'" class="mt-2">
-                    <v-img :src="getPath('twitter') + attachment.path"></v-img>
-                  </div>
-                </div>
-              </div>
-            </v-card-text>
-          </v-card>
-        </v-col>
-      </v-row>
+      <keep-alive>
+        <component :is="`tweet`" :cols="12" :md="6" :lg="4" :xl="4"></component>
+      </keep-alive>
     </div>
   </div>
 </template>
 
 <script>
+import tweet from '@/components/TweetCard.vue'
 export default {
+  components: {
+    tweet,
+  },
   data: () => {
     return {
       tweets: [],
