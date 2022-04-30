@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="tweet-cards">
     <v-row>
       <v-col
         v-for="(tweet, index) in tweets"
@@ -42,7 +42,10 @@
                   }}</a>
                 </div>
                 <div v-if="attachment.type === 'img'" class="mt-2">
-                  <v-img :src="getPath('twitter') + attachment.path"></v-img>
+                  <v-img
+                    :src="getPath('twitter') + attachment.path"
+                    class="attachment"
+                  ></v-img>
                 </div>
               </div>
             </div>
@@ -59,7 +62,7 @@
       dark
       overlay-color="cyan darken-4"
       v-model="dialog"
-      width="500"
+      width="700"
       scrollable
       overlay-opacity="0.8"
     >
@@ -81,8 +84,8 @@
               </span>
             </nuxt-link>
           </div>
-          <div class="tweet" v-html="tweet.text_translated"></div>
-          <div v-if="tweet.attachment.length" class="media">
+          <h3 class="tweet" v-html="tweet.text_translated"></h3>
+          <div v-if="tweet.attachment.length" class="media mt-8">
             <div v-for="(attachment, index) in tweet.attachment" :key="index">
               <div v-if="attachment.type === 'url'" class="mt-2">
                 <a :href="attachment.url" target="_blank">{{
