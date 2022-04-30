@@ -34,7 +34,7 @@
               </nuxt-link>
             </div>
             <div class="tweet" v-html="tweet.text_translated"></div>
-            <div v-if="tweet.attachment.length" class="media">
+            <div v-if="tweet.attachment" class="media">
               <div v-for="(attachment, index) in tweet.attachment" :key="index">
                 <div v-if="attachment.type === 'url'" class="mt-2">
                   <a :href="attachment.url" target="_blank">{{
@@ -85,7 +85,7 @@
             </nuxt-link>
           </div>
           <h3 class="tweet" v-html="tweet.text_translated"></h3>
-          <div v-if="tweet.attachment.length" class="media mt-8">
+          <div v-if="tweet.attachment" class="media mt-8">
             <div v-for="(attachment, index) in tweet.attachment" :key="index">
               <div v-if="attachment.type === 'url'" class="mt-2">
                 <a :href="attachment.url" target="_blank">{{
