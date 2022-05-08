@@ -24,10 +24,13 @@
       style="border-right: 5px solid #ffbe00 !important"
     >
       <div class="logo-right text-center my-4 orange--text">
-        Crypto
+        <v-avatar size="80">
+          <img src="~/assets/images/logo2.png" width="80" />
+        </v-avatar>
+        Arz
 
         <br />
-        N E L L
+        Feed
       </div>
       <div v-for="(item, i) in items" :key="i" class="mt-5">
         <v-btn :color="item.color" :to="item.link" icon class="mx-auto d-block">

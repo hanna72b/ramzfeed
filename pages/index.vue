@@ -6,7 +6,7 @@
           <component :is="`lastNews`"></component>
         </keep-alive>
       </v-col>
-      <v-col cols="12" md="4" lg="5">
+      <v-col cols="12" md="6" lg="5">
         <keep-alive>
           <component :is="`lastTweets`"></component>
         </keep-alive>

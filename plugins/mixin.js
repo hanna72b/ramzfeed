@@ -11,18 +11,21 @@ Vue.mixin({
         case 'twitter':
           prefix = 'twitter/'
           break
-        
+
         case 'long_news':
           prefix = 'long_news/'
           break
-         
+
         case 'article':
           prefix = 'articles/'
           break
+
+        case 'influencer':
+          prefix = 'twitter/influencer/'
+          break
       }
-      console.log(`${this.$baseUrl}/storage/uploads/${prefix}`);
+      console.log(`${this.$baseUrl}/storage/uploads/${prefix}`)
       return `${this.$baseUrl}/storage/uploads/${prefix}`
-    
     },
 
     /**
@@ -74,9 +77,6 @@ Vue.mixin({
       )
     },
 
-
-
-
     timestampToDate(timestamp) {
       let date
       if (timestamp !== null) {
@@ -90,8 +90,6 @@ Vue.mixin({
     validation(ValidationObj) {
       let msg = []
       let err
-
-
 
       if (ValidationObj[0].flag !== null && ValidationObj[0].flag === 'array') {
         if (ValidationObj[0].minVal > ValidationObj[0].field.length) {
@@ -109,8 +107,8 @@ Vue.mixin({
       Object.values(ValidationObj).forEach((v) => {
         if (v.flag === 'required') {
           if (v.field == null || v.field === '') {
-                console.log('55555555555555555555555');
-                console.log(v,'ffffffffffffffffff');
+            console.log('55555555555555555555555')
+            console.log(v, 'ffffffffffffffffff')
             msg.push(v.message)
 
             this.$store.commit('SET_ERRORS', {
@@ -158,7 +156,6 @@ Vue.mixin({
       return cache
     },
 
-
     dateToTimestamp(date, { resetHour = false, resetFrom = false } = {}) {
       try {
         let d = new Date(date)
@@ -174,27 +171,13 @@ Vue.mixin({
         console.log(e)
       }
     },
- 
 
-//     splitDescriptionWithoutFiltering(description) {
-     
-//       if (description) {
-//         // const str = description.split(/\s*(?<!\S)([^\s<>]+(?:\s+[^\s<>]+)*)(?!\S)\s*/).filter(Boolean);
-//         // return str
-
-// const doc = new DOMParser().parseFromString(description, 'text/html');
-// const arr = [...doc.body.childNodes]
-//   .map(child => child.outerHTML || child.textContent);
-// console.log(arr);
-
-//   // console.log(str);
-//         // const length = [...description].length
-//         // return length > 300 ? description.slice(0, 300)+'...' : description
-
-//       }
-//     },
-
-
+    splitTweet(str) {
+      if (str) {
+        const length = [...str].length
+        return length > 100 ? str.slice(0, 100) + '...' : str
+      }
+    },
     displayImg(basePath, imagePath) {
       // if (typeof imagePath !== 'string') {
       //   console.log('imagePath is not string')
@@ -203,17 +186,8 @@ Vue.mixin({
       if (imagePath && imagePath.length) {
         return this.getPath(basePath) + imagePath
       } else {
-        console.log('rrrrrrrrrrrrrrrrrrrrrrrrrr');
-     
+        console.log('rrrrrrrrrrrrrrrrrrrrrrrrrr')
       }
-
-     
     },
-
-
   },
-
-
-
-
 })

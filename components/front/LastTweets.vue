@@ -2,7 +2,7 @@
   <div class="mx-5">
     <div class="d-flex justify-space-between">
       <h3 class="mt-3 mb-1 text_color_grey--text">
-        سیگنال‌های رایگان از توییتر
+        سیگنال‌ها و خـبرهای توییتر
       </h3>
       <v-btn small color="teal darken-4" class="mt-3">
         مشاهده همه توییت‌ها
@@ -20,8 +20,9 @@
             <div class="profile pt-4 mb-3">
               <v-avatar size="60">
                 <v-img
-                  :src="tweet.influencer.profile_image"
+                  :src="getPath('influencer') + tweet.influencer.profile_image"
                   width="100%"
+                  class="mx-auto d-block"
                 ></v-img>
               </v-avatar>
               <span class="d-inline-block mr-3">
@@ -32,7 +33,8 @@
             <div class="tweet" v-html="tweet.text_translated"></div>
             <div v-if="tweet.attachment.length" class="media">
               <div v-for="(attachment, index) in tweet.attachment" :key="index">
-                <div v-if="attachment.type === 'url'" class="mt-2">
+                <div v-if="attachment.type === 'url'" class="mt-2 tweet-link">
+                  <v-icon color="cyan" small> mdi-open-in-new </v-icon>
                   <a :href="attachment.url" target="_blank">{{
                     attachment.url
                   }}</a>

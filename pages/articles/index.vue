@@ -17,7 +17,7 @@
                 >
                   <v-avatar size="30">
                     <v-img
-                      :src="getPath('long_news') + article.image_path"
+                      :src="getPath('article') + article.image_path"
                     ></v-img>
                   </v-avatar>
 

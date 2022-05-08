@@ -12,22 +12,20 @@
               <v-icon right>mdi-arrow-left</v-icon>
             </v-btn>
           </div>
-          <a
-            :href="news_detail.url"
-            target="_blank"
-            class="text_color_grey--text"
-          >
-            <h4 class="mb-4 orange_color_1--text">
-              {{ news_detail.title_translated }}
-            </h4>
-          </a>
 
-          <div class="text_color_grey--text">
-            {{ news_detail.brief_translated }}
+          <h4 class="mb-4 cyan--text">
+            {{ news_detail.title_translated }}
+          </h4>
+
+          <div class="text_color_grey--text lh-2 text-justify">
+            <div v-html="news_detail.brief_translated"></div>
             <a :href="news_detail.url" target="_blank">
-              <v-icon color="orange darken-4" small right>
-                mdi-open-in-new
-              </v-icon>
+              <v-btn text color="orange_color_1">
+                <v-icon color="orange_color_1 " small left>
+                  mdi-open-in-new
+                </v-icon>
+                مـشاهده کل مقاله
+              </v-btn>
             </a>
           </div>
         </div>
