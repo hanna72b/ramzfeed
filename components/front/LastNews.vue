@@ -2,6 +2,9 @@
   <div class="mx-5">
     <h3 class="mt-3 mb-4 text_color_grey--text">آخرین خبرها</h3>
     <div class="news-title">
+      <div v-if="posts.length === 0">
+        <loading></loading>
+      </div>
       <div
         v-for="(post, index) in posts"
         :key="index"

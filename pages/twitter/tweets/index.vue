@@ -11,44 +11,49 @@
     <v-row>
       <v-col cols="12" md="6">
         <div :class="[tweet_list, 'news-title']">
-          <div
-            v-for="(tweet, index) in tweets"
-            :key="index"
-            class="pt-4 font-font-weight-light"
-          >
-            <div class="d-flex">
-              <a
-                @click="gotoTweet(tweet.id)"
-                :class="[active[tweet.id], 'text_color_grey--text']"
-              >
-                <v-avatar size="30">
-                  <v-img
-                    :src="
-                      getPath('influencer') + tweet.influencer.profile_image
-                    "
-                    width="100%"
-                    class="mx-auto d-block"
-                  ></v-img>
-                </v-avatar>
-                <span
-                  class="font-weight-regular my-2"
-                  v-html="splitTweet(tweet.text_translated)"
+          <div v-if="tweets.length === 0">
+            <loading></loading>
+          </div>
+          <div v-else>
+            <div
+              v-for="(tweet, index) in tweets"
+              :key="index"
+              class="pt-4 font-font-weight-light"
+            >
+              <div class="d-flex">
+                <a
+                  @click="gotoTweet(tweet.id)"
+                  :class="[active[tweet.id], 'text_color_grey--text']"
                 >
-                </span>
-              </a>
+                  <v-avatar size="30">
+                    <v-img
+                      :src="
+                        getPath('influencer') + tweet.influencer.profile_image
+                      "
+                      width="100%"
+                      class="mx-auto d-block"
+                    ></v-img>
+                  </v-avatar>
+                  <span
+                    class="font-weight-regular my-2"
+                    v-html="splitTweet(tweet.text_translated)"
+                  >
+                  </span>
+                </a>
+              </div>
+              <div class="d-flex justify-end">
+                <v-btn
+                  color="cyan"
+                  icon
+                  small
+                  @click="gotoTweet(tweet.id)"
+                  class="ml-5"
+                >
+                  <v-icon right small>mdi-arrow-left</v-icon>
+                </v-btn>
+              </div>
+              <v-divider class="mt-3"></v-divider>
             </div>
-            <div class="d-flex justify-end">
-              <v-btn
-                color="cyan"
-                icon
-                small
-                @click="gotoTweet(tweet.id)"
-                class="ml-5"
-              >
-                <v-icon right small>mdi-arrow-left</v-icon>
-              </v-btn>
-            </div>
-            <v-divider class="mt-3"></v-divider>
           </div>
         </div>
         <!-- ====================================================================== -->
@@ -125,18 +130,9 @@
       </v-col>
 
       <v-col cols="12" md="6" class="d-none d-md-flex">
-        <div v-if="!tweet" class="news-title">
-          <v-avatar size="200">
-            <img
-              src="~/assets/images/logo2.png"
-              width="200"
-              class="mx-auto d-block"
-            />
-          </v-avatar>
-        </div>
-        <v-card v-else dark color="#3f4248" width="100%">
+        <v-card v-if="tweet" dark color="#3f4248" width="100%">
           <v-card-text class="px-10 py-6">
-            <div v-if="tweet.influencer" class="profile d-flex">
+            <div class="profile d-flex">
               <span>
                 <v-avatar size="90">
                   <v-img
@@ -229,6 +225,7 @@
 
 <script>
 import tweet from '@/components/TweetCard.vue'
+import loading from '@/components/Loading.vue'
 
 export default {
   components: {
@@ -245,6 +242,7 @@ export default {
       display_tweet_in_mobile: false,
       tweet_detail: 'd-none',
       tweet_list: 'd-block',
+      detail_loading: false,
     }
   },
 
@@ -300,8 +298,11 @@ export default {
     strip(str) {},
     async getTweet(id) {
       this.tweet = null
+      this.detail_loading = true
       const response = await this.$axios.get(`/tweets/show/${id}`)
       this.tweet = response.data.data
+      this.detail_loading = false
+      console.log(3333333333333333333)
     },
   },
 }

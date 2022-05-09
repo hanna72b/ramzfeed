@@ -433,3 +433,17 @@ a {
 .lh-2 {
   line-height: 2rem;
 }
+
+.desc_added {
+  div {
+    margin: 0 2px;
+  }
+
+  display: flex;
+  color: #767676;
+  font-weight: 500;
+
+  &::before {
+    content: ' * '
+  }
+}

@@ -5,6 +5,9 @@
         <div class="mx-5">
           <h3 class="mt-3 mb-4 text_color_grey--text">آخرین مقالات آموزشی</h3>
           <div class="news-title">
+            <div v-if="articles.length === 0">
+              <loading></loading>
+            </div>
             <div
               v-for="(article, index) in articles"
               :key="index"
