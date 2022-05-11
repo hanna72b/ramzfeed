@@ -27,18 +27,22 @@
         <v-avatar size="80">
           <img src="~/assets/images/logo2.png" width="80" />
         </v-avatar>
-        Arz
-
-        <br />
-        Feed
       </div>
+      <div class="pt-1 text-center">FIDI NEX</div>
       <div v-for="(item, i) in items" :key="i" class="mt-5">
-        <v-btn :color="item.color" :to="item.link" icon class="mx-auto d-block">
-          <v-icon x-large class="">{{ item.icon }}</v-icon>
-        </v-btn>
+        <v-btn
+          :color="item.color"
+          :to="item.link"
+          class="mx-auto d-block mb-10"
+          active-class="right-menu-active"
+          depressed
+          text
+        >
+          <div class="d-flex flex-column">
+            <v-icon x-large class="">{{ item.icon }}</v-icon>
 
-        <v-btn text class="mx-auto d-block mb-3 mt-1 text_color_grey--text">
-          {{ item.text }}
+            <div class="name-of-link">{{ item.text }}</div>
+          </div>
         </v-btn>
 
         <v-divider></v-divider>
@@ -92,11 +96,6 @@ export default {
         text: 'توییت‌هـا',
         color: '#506266',
         link: '/twitter/tweets',
-      },
-      {
-        icon: 'mdi-chart-donut',
-        text: 'Data Usage',
-        color: '#506266',
       },
     ],
   }),

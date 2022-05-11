@@ -447,3 +447,17 @@ a {
     content: ' * '
   }
 }
+
+.right-menu-active {
+  i {
+    color: cyan !important;
+  }
+
+  &::before {
+    background-color: transparent !important;
+  }
+
+  .name-of-link {
+    color: cyan;
+  }
+}

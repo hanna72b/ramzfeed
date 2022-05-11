@@ -13,11 +13,32 @@
           :key="index"
           class="pt-4 font-font-weight-light"
         >
-          <h4 class="font-weight-regular text_color_grey--text">
-            {{ ns.title_translated }}
-          </h4>
+          <div v-if="ns.publish > 1">
+            <h4
+              v-if="ns.publish === 2"
+              class="font-weight-regular text_color_grey--text"
+            >
+              {{ ns.title_translated }}
+            </h4>
 
-          <v-divider class="mt-3"></v-divider>
+            <h4
+              v-if="ns.publish === 3"
+              class="font-weight-regular text_color_grey--text"
+            >
+              {{ ns.description_translated }}
+            </h4>
+            <h4
+              v-if="ns.publish === 4"
+              class="font-weight-regular text_color_grey--text"
+            >
+              <div>{{ ns.title_translated }}</div>
+              <br />
+              <div>
+                {{ ns.description_translated }}
+              </div>
+            </h4>
+            <v-divider class="mt-3"></v-divider>
+          </div>
         </div>
       </div>
     </div>
