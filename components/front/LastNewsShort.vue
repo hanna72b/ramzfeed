@@ -13,7 +13,17 @@
           :key="index"
           class="pt-4 font-font-weight-light"
         >
-          <div v-if="ns.publish > 1">
+          <div v-if="ns.publish > 1" class="d-inline-block">
+            <v-chip
+              v-if="ns.important"
+              color="red"
+              dark
+              label
+              small
+              class="mb-3"
+            >
+              خـبر مهم
+            </v-chip>
             <h4
               v-if="ns.publish === 2"
               class="font-weight-regular text_color_grey--text"
@@ -37,6 +47,7 @@
                 {{ ns.description_translated }}
               </div>
             </h4>
+
             <v-divider class="mt-3"></v-divider>
           </div>
         </div>

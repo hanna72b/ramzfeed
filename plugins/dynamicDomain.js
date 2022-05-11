@@ -3,7 +3,6 @@ export default ({ app, req }, inject) => {
   let baseUrl = ''
   if (host === 'localhost:3000') {
     baseUrl = 'http://localhost:8000'
-    // baseUrl = 'https://api.tpbl.ir'
   } else {
     baseUrl = 'https://api.catinex.com'
   }
