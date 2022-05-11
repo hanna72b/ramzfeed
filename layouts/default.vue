@@ -23,12 +23,11 @@
       mobile-breakpoint="960"
       style="border-right: 5px solid #ffbe00 !important"
     >
-      <div class="logo-right text-center my-4 orange--text">
-        <v-avatar size="80">
-          <img src="~/assets/images/logo2.png" width="80" />
-        </v-avatar>
+      <div class="logo-right text-center d-none d-md-block">
+        <img src="~/assets/images/logo2.png" width="96" />
+        <div class="fidinex-menu">FidiNEX</div>
       </div>
-      <div class="pt-1 text-center">FIDI NEX</div>
+
       <div v-for="(item, i) in items" :key="i" class="mt-5">
         <v-btn
           :color="item.color"
@@ -59,14 +58,19 @@
       height="70px"
       color="grey_deep_1"
       fixed
-      class="d-sm-flex d-md-none"
+      class="d-sm-flex d-md-none footer"
     >
-      <currencies></currencies>
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
-        class="mr-16"
+        class="mr-3"
       ></v-app-bar-nav-icon>
-      Catinex
+      مـنو
+
+      <div class="logo-footer">
+        <img src="~/assets/images/logo2.png" width="96" />
+      </div>
+
+      <div class="fidinex-menu">FidiNEX</div>
     </v-footer>
   </v-app>
 </template>

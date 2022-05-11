@@ -11,7 +11,7 @@
         class="pt-4 font-font-weight-light"
       >
         <div class="d-flex">
-          <nuxt-link :to="`/news/${post.uuid}`" class="text_color_grey--text">
+          <nuxt-link :to="`/news/${post.slug}`" class="text_color_grey--text">
             <v-avatar size="30">
               <v-img :src="getPath('long_news') + post.image_path"></v-img>
             </v-avatar>

@@ -4,8 +4,8 @@ import fa from 'vuetify/es5/locale/fa'
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    titleTemplate: '%s - front',
-    title: 'front',
+    titleTemplate: '%s ',
+    title: 'FidiNex.com',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -16,16 +16,10 @@ export default {
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
-   css: ['~/assets/scss/styles.scss', '@mdi/font/css/materialdesignicons.css'],
+  css: ['~/assets/scss/styles.scss', '@mdi/font/css/materialdesignicons.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-   plugins: [
-    '@/plugins/axios',
-    '@/plugins/mixin',
-    '@/plugins/dynamicDomain',
-
-   
-  ],
+  plugins: ['@/plugins/axios', '@/plugins/mixin', '@/plugins/dynamicDomain'],
 
   auth: {
     redirect: {
@@ -86,7 +80,6 @@ export default {
     '@nuxtjs/pwa',
     '@nuxtjs/universal-storage',
     '@nuxtjs/auth',
-
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
@@ -104,20 +97,18 @@ export default {
 
   // Vuetify module configuration: https://go.nuxtjs.dev/config-vuetify
   vuetify: {
- 
     customVariables: ['~/assets/variables.scss'],
-    treeShake:true,
+    treeShake: true,
     rtl: true,
-         lang: {
+    lang: {
       locales: { fa },
-           current: 'fa',
-
+      current: 'fa',
     },
-         
+
     theme: {
       dark: true,
       themes: {
-          options: { customProperties: true },
+        options: { customProperties: true },
         dark: {
           primary: colors.blue.darken2,
           accent: colors.grey.darken3,
@@ -126,13 +117,12 @@ export default {
           warning: colors.amber.base,
           error: colors.deepOrange.accent4,
           success: colors.green.accent3,
-          grey_deep_1:"#202225",
-          grey_deep_2:"#2F3136",
-         
-          background: "#36393F",
-          text_color_grey: "#9f9f9f",
-          orange_color_1:"#ffbe00"
-          
+          grey_deep_1: '#202225',
+          grey_deep_2: '#2F3136',
+
+          background: '#36393F',
+          text_color_grey: '#9f9f9f',
+          orange_color_1: '#ffbe00',
         },
       },
     },

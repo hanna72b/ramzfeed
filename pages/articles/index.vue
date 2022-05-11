@@ -15,7 +15,7 @@
             >
               <div class="d-flex">
                 <nuxt-link
-                  :to="`/articles/${article.uuid}`"
+                  :to="`/articles/${article.slug}`"
                   class="text_color_grey--text"
                 >
                   <v-avatar size="30">

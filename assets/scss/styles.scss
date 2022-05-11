@@ -461,3 +461,33 @@ a {
     color: cyan;
   }
 }
+
+.logo-right {
+  height: 116px;
+
+  .fidinex-menu {
+    background-color: #161010;
+    position: relative;
+    top: -19px;
+    padding-bottom: 10px
+  }
+}
+
+.logo-footer {
+
+  position: absolute;
+  left: 12px;
+  bottom: -3pX;
+
+  img {
+    border-radius: 10px;
+  }
+}
+
+.footer {
+  .fidinex-menu {
+    position: absolute;
+    left: 120px;
+    font-size: 21px;
+  }
+}

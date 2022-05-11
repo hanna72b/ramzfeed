@@ -13,43 +13,36 @@
           :key="index"
           class="pt-4 font-font-weight-light"
         >
-          <div v-if="ns.publish > 1" class="d-inline-block">
-            <v-chip
-              v-if="ns.important"
-              color="red"
-              dark
-              label
-              small
-              class="mb-3"
-            >
-              خـبر مهم
-            </v-chip>
-            <h4
-              v-if="ns.publish === 2"
-              class="font-weight-regular text_color_grey--text"
-            >
+          <h4 class="font-weight-regular text_color_grey--text">
+            <span v-if="ns.publish === 2 || ns.publish === 4">
+              <v-chip
+                v-if="ns.important"
+                color="red"
+                dark
+                label
+                small
+                class="my-2"
+              >
+                خـبر مهم
+              </v-chip>
               {{ ns.title_translated }}
-            </h4>
-
-            <h4
-              v-if="ns.publish === 3"
-              class="font-weight-regular text_color_grey--text"
-            >
+              <v-divider class="mt-3"></v-divider>
+            </span>
+            <span v-if="ns.publish === 3 || ns.publish === 4">
+              <v-chip
+                v-if="ns.important"
+                color="red"
+                dark
+                label
+                small
+                class="my-2"
+              >
+                خـبر مهم
+              </v-chip>
               {{ ns.description_translated }}
-            </h4>
-            <h4
-              v-if="ns.publish === 4"
-              class="font-weight-regular text_color_grey--text"
-            >
-              <div>{{ ns.title_translated }}</div>
-              <br />
-              <div>
-                {{ ns.description_translated }}
-              </div>
-            </h4>
-
-            <v-divider class="mt-3"></v-divider>
-          </div>
+              <v-divider class="mt-3"></v-divider>
+            </span>
+          </h4>
         </div>
       </div>
     </div>
