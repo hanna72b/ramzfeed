@@ -41,12 +41,12 @@ export default {
       dialog: false,
       dialog_img: false,
       tweet: null,
-      uuid: null,
+      slug: null,
     }
   },
 
   async mounted() {
-    this.uuid = this.$route.params.uuid
+    this.slug = this.$route.params.slug
 
     await this.getTweet()
   },
@@ -55,7 +55,7 @@ export default {
     async getTweet() {
       this.tweet = null
       this.dialog = true
-      const response = await this.$axios.get(`/tweets/show/${this.uuid}`)
+      const response = await this.$axios.get(`/tweets/show/slug/${this.slug}`)
       this.tweet = response.data.data
       console.log(this.tweet)
     },

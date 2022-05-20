@@ -491,3 +491,15 @@ a {
     font-size: 21px;
   }
 }
+
+.with_mention_ltr {
+  color: #b3aeae !important;
+  direction: ltr !important;
+  unicode-bidi: embed !important;
+}
+
+.with_symbol_ltr {
+  color: #b3aeae !important;
+  direction: ltr;
+  unicode-bidi: embed;
+}

@@ -99,7 +99,7 @@ export default {
         icon: 'mdi-twitter',
         text: 'توییت‌هـا',
         color: '#506266',
-        link: '/twitter/tweets',
+        link: '/tweets',
       },
     ],
   }),

@@ -24,7 +24,7 @@ Vue.mixin({
           prefix = 'twitter/influencer/'
           break
       }
-      console.log(`${this.$baseUrl}/storage/uploads/${prefix}`)
+
       return `${this.$baseUrl}/storage/uploads/${prefix}`
     },
 

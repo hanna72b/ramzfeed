@@ -22,8 +22,8 @@
             >
               <div class="d-flex">
                 <a
-                  @click="gotoTweet(tweet.id)"
-                  :class="[active[tweet.id], 'text_color_grey--text']"
+                  @click="gotoTweet(tweet.slug)"
+                  :class="[active[tweet.slug], 'text_color_grey--text']"
                 >
                   <v-avatar size="30">
                     <v-img
@@ -46,7 +46,7 @@
                   color="cyan"
                   icon
                   small
-                  @click="gotoTweet(tweet.id)"
+                  @click="gotoTweet(tweet.slug)"
                   class="ml-5"
                 >
                   <v-icon right small>mdi-arrow-left</v-icon>
@@ -68,7 +68,7 @@
           <v-card v-else dark color="#3f4248">
             <div class="d-flex justify-end">
               <div class="py-5">
-                <v-btn small @click="gotoAllTweets">
+                <v-btn small @click="goToMainTweets">
                   <span>بازگشـت</span>
                   <v-icon right>mdi-arrow-left</v-icon>
                 </v-btn>
@@ -226,6 +226,7 @@
 <script>
 import tweet from '@/components/TweetCard.vue'
 import loading from '@/components/Loading.vue'
+import debounce from 'lodash/debounce'
 
 export default {
   components: {
@@ -243,66 +244,103 @@ export default {
       tweet_detail: 'd-none',
       tweet_list: 'd-block',
       detail_loading: false,
+      slug: null,
     }
   },
 
   async mounted() {
-    this.onResize()
+    if (process.browser) {
+      window.addEventListener('resize', this.onResize, { passive: true })
+    }
+
     this.tweet_list = 'd_block'
-    window.addEventListener('resize', this.onResize, { passive: true })
-    this.uuid = null
-    await this.lastTweets()
   },
-  computed: {
-    strippedContent() {
-      let regex = /(<([^>]+)>)/gi
-      return this.comment.content.rendered.replace(regex, '')
+
+  watch: {
+    $route: {
+      immediate: true,
+      async handler(tweet) {
+        // document.addEventListener('resize', this.onResize, { passive: true })
+        this.slug = tweet.query.tweet
+        console.log(tweet.query.tweet, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+        this.onResize()
+        if (this.slug) {
+          console.log('has SLUG')
+          await this.getTweet()
+        } else {
+          console.log('DONT has SLUG')
+          await this.lastTweets()
+        }
+        // make actions with newVal.page
+      },
     },
   },
   methods: {
-    onResize() {
-      this.isMobile = window.innerWidth < 959
-      if (this.isMobile) {
-        this.tweet_detail = 'd-none'
-        this.tweet_list = 'd-block'
-      } else {
-        console.log(44444444444444444444444)
+    onResize: debounce(function () {
+      if (process.browser) {
+        this.isMobile = window.innerWidth < 959 ? true : false
+      }
+      console.log(
+        this.isMobile,
+        'iiiiiiiiiiiiiiiiiiissssssssssssssssssssssssssssssssssssss'
+      )
+      if (this.isMobile && this.slug) {
+        console.log('a11111')
+        this.tweet_detail = 'd-block'
+        this.tweet_list = 'd-none'
+        this.getTweet()
+      } else if (this.isMobile && !this.slug) {
+        console.log('a22222222')
         this.tweet_detail = 'd-none'
         this.tweet_list = 'd-block'
       }
-    },
+
+      if (!this.isMobile && this.slug) {
+        console.log('a333333')
+        this.tweet_detail = 'd-none'
+        this.tweet_list = 'd-block'
+        this.lastTweets()
+      } else if (!this.isMobile && !this.slug) {
+        console.log('a4444444444444')
+        this.tweet_detail = 'd-none'
+        this.tweet_list = 'd-block'
+      }
+    }, 500),
+
     gotoAllTweets() {
       this.tweet_detail = 'd-none'
       this.tweet_list = 'd-block'
     },
-    async gotoTweet(id) {
-      if (this.isMobile) {
-        console.log(333333333333333333)
-        this.tweet_list = 'd-none'
-        this.tweet_detail = 'd-block'
-      }
-      this.active = []
-      this.active[id] = 'active'
-      this.uuid = this.$route.query.uuid
-      this.$router.push({
-        query: { uuid: id },
-      })
-      console.log(this.uuid, 'gggggggggggggggggggggg')
+
+    goToMainTweets() {
+      this.$router.push('tweets')
+    },
+    async gotoTweet(slug) {
+      // if (this.isMobile) {
+      //   this.tweet_list = 'd-none'
+      //   this.tweet_detail = 'd-block'
+      // }
+
+      // this.onResize()
       this.tweet = null
-      await this.getTweet(id)
+      this.active = []
+      this.active[slug] = 'active'
+      this.$router.push({ query: { tweet: slug } })
+
+      // this.tweet = null
+      await this.getTweet()
     },
     async lastTweets() {
       const response = await this.$axios.get('/tweets/index')
       this.tweets = response.data.data
     },
-    strip(str) {},
-    async getTweet(id) {
+    async getTweet() {
       this.tweet = null
       this.detail_loading = true
-      const response = await this.$axios.get(`/tweets/show/${id}`)
+      const response = await this.$axios.get(`/tweets/show/slug/${this.slug}`)
       this.tweet = response.data.data
+
       this.detail_loading = false
-      console.log(3333333333333333333)
     },
   },
 }
