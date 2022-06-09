@@ -4,7 +4,7 @@ export default ({ app, req }, inject) => {
   if (host === 'localhost:3000') {
     baseUrl = 'http://localhost:8000'
   } else {
-    baseUrl = 'https://api.catinex.com'
+    baseUrl = 'https://api.ramzfeed.com'
   }
 
   app.$axios.onRequest((config) => {
