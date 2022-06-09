@@ -1,19 +1,5 @@
 <template>
   <v-app id="inspire">
-    <!-- <v-app-bar
-      app
-      clipped-right
-      dense
-      fade-img-on-scroll
-      height="50"
-      color="grey_deep_0"
-    >
-      <v-app-bar-nav-icon
-        @click.stop="drawer = !drawer"
-        class="mr-16"
-      ></v-app-bar-nav-icon>
-    </v-app-bar> -->
-
     <v-navigation-drawer
       v-model="drawer"
       app
@@ -21,11 +7,18 @@
       width="100"
       color="grey_deep_1"
       mobile-breakpoint="960"
+      floating
       style="border-right: 5px solid #ffbe00 !important"
     >
       <div class="logo-right text-center d-none d-md-block">
         <img src="~/assets/images/logo2.png" width="96" />
-        <div class="fidinex-menu">FidiNEX</div>
+        <div class="fidinex-menu text-center">رمـز‌فـید</div>
+      </div>
+      <div v-if="loggedInUser" class="panel-menu-in-right">
+        <router-link to="/profile">پنل‌کاربری شما</router-link>
+      </div>
+      <div v-else class="panel-menu-in-right">
+        <router-link to="/auth/mobile"> ورود | ثبت‌نام</router-link>
       </div>
 
       <div v-for="(item, i) in items" :key="i" class="mt-5">
@@ -51,34 +44,47 @@
     </v-navigation-drawer>
 
     <v-main>
+      <Notification />
       <nuxt />
     </v-main>
-
     <v-footer
-      height="70px"
+      height="110px"
       color="grey_deep_1"
       fixed
       class="d-sm-flex d-md-none footer"
     >
       <v-app-bar-nav-icon
         @click.stop="drawer = !drawer"
-        class="mr-3"
+        class="mr-3 berger-menu"
       ></v-app-bar-nav-icon>
-      مـنو
+
+      <span class="berger-menu-txt">مـنو</span>
 
       <div class="logo-footer">
         <img src="~/assets/images/logo2.png" width="96" />
       </div>
 
-      <div class="fidinex-menu">FidiNEX</div>
+      <div class="fidinex-menu">RamzFeed</div>
+    </v-footer>
+
+    <!-- main footer -->
+    <v-footer height="40px" color="#44474c" fixed>
+      <div class="d-flex footer-menu">
+        <span class="item">درباره ما</span>
+        <span class="item">تماس با ما</span>
+        <span class="item"> | RamzFeed.com</span>
+      </div>
     </v-footer>
   </v-app>
 </template>
 
 <script>
-import currencies from '~/components/Currencies.vue'
+import { mapGetters } from 'vuex'
+import Notification from '@/components/Notification'
+
 export default {
-  components: { currencies },
+  components: { Notification },
+  computed: { ...mapGetters(['isAuthenticated', 'loggedInUser']) },
   data: () => ({
     drawer: null,
     collapseOnScroll: true,

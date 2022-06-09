@@ -5,14 +5,22 @@ export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s ',
-    title: 'FidiNex.com',
+    title: 'ramzfeed.com | رمزفید',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      {
+        hid: 'description',
+        name: 'description',
+        content: 'ربات هوشمند خبررسان رمز ارزها',
+      },
       { name: 'format-detection', content: 'telephone=no' },
     ],
     link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+  },
+
+  router: {
+    middleware: 'routing',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -45,7 +53,7 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: '/user/login',
+            url: '/auth/login',
             method: 'post',
             propertyName: 'data.access_token',
           },

@@ -94,10 +94,9 @@ Vue.mixin({
       if (ValidationObj[0].flag !== null && ValidationObj[0].flag === 'array') {
         if (ValidationObj[0].minVal > ValidationObj[0].field.length) {
           this.$store.commit('SET_ERRORS', {
-            type: 'warning',
-            messages: {
-              message: ValidationObj[0].message,
-            },
+            type: 'success',
+            msg_type: 'txt',
+            message: ValidationObj[0].message,
           })
           err = true
           ValidationObj = {}
@@ -112,10 +111,9 @@ Vue.mixin({
             msg.push(v.message)
 
             this.$store.commit('SET_ERRORS', {
-              type: 'warning',
-              messages: {
-                errors: [msg],
-              },
+              type: 'success',
+              msg_type: 'array',
+              message: [msg],
             })
             err = true
             ValidationObj = {}
@@ -126,10 +124,9 @@ Vue.mixin({
           msg.push(v.message)
 
           this.$store.commit('SET_ERRORS', {
-            type: 'warning',
-            messages: {
-              errors: [msg],
-            },
+            type: 'success',
+            msg_type: 'array',
+            message: [msg],
           })
           err = true
           ValidationObj = {}

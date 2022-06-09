@@ -1,18 +1,16 @@
 <template>
   <div class="mx-5">
     <div class="d-flex justify-space-between">
-      <h3 class="mt-3 mb-1 text_color_grey--text">
-        سیگنال‌ها و خـبرهای توییتر
-      </h3>
-      <v-btn small color="teal darken-4" class="mt-3">
+      <h3 class="mt-3 mb-1 text_color_grey--text">تحلیل‌ها و خـبرهای توییتر</h3>
+      <v-btn small to="/tweets" color="orange darken-4" depressed class="mt-3">
         مشاهده همه توییت‌ها
       </v-btn>
     </div>
 
-    <h6 class="orange_color_1--text mb-3 font-weight-light">
+    <h5 class="orange_color_1--text mb-3 font-weight-light">
       در این بخش می‌توانید به صوررت لحظه‌ای ،توییت‌های تریدرهای حرفه ای را به
       زبان فارسی مشاهده کنید
-    </h6>
+    </h5>
     <div class="tweets-in-front">
       <div v-for="(tweet, index) in tweets" :key="index">
         <v-card color="grey_deep_1" class="tweets mb-5 pb-5">

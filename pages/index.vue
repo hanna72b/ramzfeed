@@ -35,5 +35,12 @@ export default {
       tab: null,
     }
   },
+  created() {
+    // this.$store.commit('SET_ERRORS', {
+    //   type: 'success',
+    //   msg_type: 'txt',
+    //   message: 'اطلاعات شما با موفقیت ذخیره شد',
+    // })
+  },
 }
 </script>

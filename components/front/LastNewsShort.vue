@@ -1,10 +1,10 @@
 <template>
-  <div class="mx-5">
+  <div class="mx-5 short-news-front">
     <h3 class="mt-3 mb-1 text_color_grey--text">خبرهای فوری و کوتاه</h3>
 
-    <h6 class="orange_color_1--text mb-3 font-weight-light">
-      خبرهای این بخش به صورت لحظه‌ای از بیش از صد سایت خبری خارج و ترجمه میشود
-    </h6>
+    <h5 class="orange_color_1--text mb-3 font-weight-light">
+      پخش زنده سرخط خبر‌های دنیای کریپتوکارنسی
+    </h5>
 
     <div class="news-title-short">
       <div class="inner">
@@ -26,6 +26,17 @@
                 خـبر مهم
               </v-chip>
               {{ ns.title_translated }}
+
+              <div class="like-dislike d-flex mt-3 justify-end">
+                <keep-alive>
+                  <component
+                    :is="`likes`"
+                    content="short_news"
+                    :actions="ns.news_like"
+                    :id="ns.id"
+                  ></component>
+                </keep-alive>
+              </div>
               <v-divider class="mt-3"></v-divider>
             </span>
             <span v-if="ns.publish === 3 || ns.publish === 4">
@@ -40,6 +51,20 @@
                 خـبر مهم
               </v-chip>
               {{ ns.description_translated }}
+              <span class="source" v-if="ns.source_name"
+                >منبع: {{ ns.source_name }}</span
+              >
+
+              <div class="like-dislike d-flex mt-3 justify-end">
+                <keep-alive>
+                  <component
+                    :is="`likes`"
+                    content="short_news"
+                    :actions="ns.news_like"
+                    :id="ns.id"
+                  ></component>
+                </keep-alive>
+              </div>
               <v-divider class="mt-3"></v-divider>
             </span>
           </h4>

@@ -1,5 +1,5 @@
 <template>
-  <v-row class="last-news px-7">
+  <v-row v-if="news_detail" class="last-news px-7">
     <v-col cols="12" md="7">
       <div class="news-brief">
         <div v-if="news_detail" class="mt-6">
@@ -17,9 +17,23 @@
               {{ news_detail.title_translated }}
             </h2>
           </div>
-
+          <small>
+            {{
+              toJalali(new Date(news_detail.created_at).getTime() / 1000, true)
+            }}
+          </small>
           <div class="text_color_grey--text lh-2 text-justify">
             <div v-html="news_detail.brief_translated"></div>
+          </div>
+          <div class="like-dislike d-flex mt-3 justify-end">
+            <keep-alive>
+              <component
+                :is="`likes`"
+                content="news"
+                :id="news_detail.id"
+                :actions="news_detail.news_like"
+              ></component>
+            </keep-alive>
           </div>
           <a :href="news_detail.url" target="_blank">
             <v-btn text color="orange_color_1">
@@ -59,7 +73,6 @@ export default {
     }
   },
   async mounted() {
-    console.log(33333333333333333333)
     this.slug = this.$route.params.slug
     console.log(this.slug)
     await this.displayBrief()

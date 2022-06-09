@@ -3,7 +3,12 @@
     <v-row class="last-news" no-gutters>
       <v-col cols="12" md="6" lg="7">
         <div class="mx-5">
-          <h3 class="mt-3 mb-4 text_color_grey--text">آخرین مقالات آموزشی</h3>
+          <h3 class="mt-3 mb-2 text_color_grey--text">
+            آخرین تحلیل‌ها و مقالات آموزشی
+          </h3>
+          <h5 class="orange_color_1--text mb-3 font-weight-light">
+            آخرین مقالات و تحلیل‌ها، از سراسر اینترنت
+          </h5>
           <div class="news-title">
             <div v-if="articles.length === 0">
               <loading></loading>
@@ -35,7 +40,7 @@
           </div>
         </div>
       </v-col>
-      <v-col cols="12" md="4" lg="5">
+      <v-col cols="12" md="6" lg="5">
         <keep-alive>
           <component :is="`lastTweets`"></component>
         </keep-alive>

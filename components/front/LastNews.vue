@@ -1,6 +1,9 @@
 <template>
   <div class="mx-5">
-    <h3 class="mt-3 mb-4 text_color_grey--text">آخرین خبرها</h3>
+    <h3 class="mt-3 mb-2 text_color_grey--text">آخرین خبرها</h3>
+    <h5 class="orange_color_1--text mb-3 font-weight-light">
+      خبرهای بیش از پنجاه سایت خبری را در این قسمت مشاهده کنید
+    </h5>
     <div class="news-title">
       <div v-if="posts.length === 0">
         <loading></loading>
@@ -11,7 +14,7 @@
         class="pt-4 font-font-weight-light"
       >
         <div class="d-flex">
-          <nuxt-link :to="`/news/${post.slug}`" class="text_color_grey--text">
+          <router-link :to="`/news/${post.slug}`" class="text_color_grey--text">
             <v-avatar size="30">
               <v-img :src="getPath('long_news') + post.image_path"></v-img>
             </v-avatar>
@@ -19,7 +22,18 @@
             <span class="font-weight-regular mr-2">
               {{ post.title_translated }}
             </span>
-          </nuxt-link>
+          </router-link>
+        </div>
+
+        <div class="like-dislike d-flex mt-3 justify-end">
+          <keep-alive>
+            <component
+              :is="`likes`"
+              content="news"
+              :id="post.id"
+              :actions="post.news_like"
+            ></component>
+          </keep-alive>
         </div>
 
         <v-divider class="mt-3"></v-divider>

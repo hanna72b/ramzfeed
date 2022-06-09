@@ -8,8 +8,8 @@
         label="شماره موبایل"
         :disabled="true"
       ></v-text-field>
-
-      <h3 class="text-right mt-4 mb-6">رمز عبور خود را وارد کنید</h3>
+      <h2 class="orange--text">به رمزفید خوش‌آمدید</h2>
+      <h3 class="text-right mt-4 mb-6">رمز عبور مورد نظر خود را وارد کنید</h3>
       <v-text-field
         v-model="pass"
         color="cyan"
@@ -27,7 +27,7 @@
         class="mx-auto text-center d-block mt-4"
         width="100%"
         type="submit"
-        >ورود</v-btn
+        >ثبت‌نهایی و ورود</v-btn
       >
     </v-form>
   </div>
@@ -72,9 +72,9 @@ export default {
         password: this.pass,
       }
       try {
-        const response = await this.$axios.post('auth/login', value)
+        const response = await this.$axios.post('auth/create-user', value)
 
-        if (response.data.data.access_token) {
+        if (response.data.data.id) {
           await this.$auth.loginWith('local', {
             data: {
               phone: this.mobile,
