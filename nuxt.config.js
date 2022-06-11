@@ -23,6 +23,10 @@ export default {
     middleware: 'routing',
   },
 
+  googleAnalytics: {
+    id: 'G-LSXZXFNTGN',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: ['~/assets/scss/styles.scss', '@mdi/font/css/materialdesignicons.css'],
 
@@ -78,6 +82,7 @@ export default {
     '@nuxt/typescript-build',
     // https://go.nuxtjs.dev/vuetify
     '@nuxtjs/vuetify',
+    '@nuxtjs/google-analytics',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
