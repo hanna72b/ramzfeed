@@ -277,6 +277,8 @@ a {
   height: calc(100vh - 105px);
   overflow: auto;
   position: relative;
+  overflow-y:scroll !important;
+  overflow-x: hidden !important;
 
 
 }
@@ -401,7 +403,7 @@ a {
     .n,
     .sn,
     .f {
-      text-align: center !important;
+      text-align: right !important;
     }
   }
 }
