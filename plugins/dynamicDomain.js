@@ -2,7 +2,7 @@ export default ({ app, req }, inject) => {
   const host = process.server ? req.headers.host : window.location.host
   let baseUrl = ''
   if (host === 'localhost:3000') {
-    baseUrl = 'https://api.ramzfeed.com'
+    baseUrl = 'http://localhost:8000'
   } else {
     baseUrl = 'https://api.ramzfeed.com'
   }

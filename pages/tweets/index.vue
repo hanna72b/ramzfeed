@@ -37,7 +37,7 @@
                     {{ tweet.influencer.name }}
                   </h2>
                   <h4 class="text_color_grey--text sn">
-                    @{{ tweet.influencer.screen_name }}
+                    {{ tweet.influencer.screen_name }}
                   </h4>
 
                   <h4 class="text_color_grey--text f">
@@ -47,11 +47,11 @@
               </div>
 
               <div class="">
-                <h3
-                  class="tweet mt-8"
+                <div
+                  class="tweet mt-8 mb-3"
                   dir="rtl"
                   v-html="tweet.text_translated"
-                ></h3>
+                ></div>
 
                 <div v-if="tweet.attachment" class="media mt-3">
                   <div
@@ -78,11 +78,12 @@
                     </div>
                   </div>
                 </div>
+              </div>
+              <div class="text-left cyan--text mt-4 ml-5">
                 {{
                   toJalali(new Date(tweet.published_at).getTime() / 1000, true)
                 }}
               </div>
-
               <v-divider class="mt-3"></v-divider>
             </div>
           </div>

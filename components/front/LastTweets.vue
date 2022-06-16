@@ -42,6 +42,11 @@
                 </div>
               </div>
             </div>
+            <div class="text-left cyan--text mt-4">
+              {{
+                toJalali(new Date(tweet.published_at).getTime() / 1000, true)
+              }}
+            </div>
           </v-card-text>
         </v-card>
       </div>
