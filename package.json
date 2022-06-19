@@ -16,6 +16,7 @@
     "@mdi/font": "^6.5.95",
     "@nuxtjs/auth": "^4.9.1",
     "@nuxtjs/axios": "^5.13.6",
+    "@nuxtjs/google-gtag": "^1.0.4",
     "@nuxtjs/pwa": "^3.3.5",
     "@nuxtjs/universal-storage": "^0.5.9",
     "@types/sass-loader": "^8.0.3",
