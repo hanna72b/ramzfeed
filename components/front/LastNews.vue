@@ -39,6 +39,17 @@
         <v-divider class="mt-3"></v-divider>
       </div>
     </div>
+    <v-pagination
+      class="mx-auto d-block my-6"
+      color="cyan"
+      v-model="page"
+      @input="lastNews"
+      :total-visible="7"
+      :length="last_page"
+      light
+      circle
+      dark
+    ></v-pagination>
   </div>
 </template>
 
@@ -55,6 +66,8 @@ export default {
       loading: false,
       titles: 'd-flex',
       brief: 'd-none',
+      page: 1,
+      last_page: null,
     }
   },
 
@@ -65,8 +78,11 @@ export default {
 
   methods: {
     async lastNews() {
-      const response = await this.$axios.get('/news/last')
+      const response = await this.$axios.get(`/news/last?page=${this.page}`)
       this.posts = response.data.data
+      this.page = response.data.pagination.current_page
+      this.last_page = response.data.pagination.last_page
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
 
     async lastNewsShort() {

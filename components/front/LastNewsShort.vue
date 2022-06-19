@@ -13,8 +13,11 @@
           :key="index"
           class="pt-4 font-font-weight-light"
         >
-          <h4 class="font-weight-regular text_color_grey--text">
-            <span v-if="ns.publish === 2 || ns.publish === 4">
+          <h4
+            v-if="ns.publish > 1"
+            class="font-weight-regular text_color_grey--text"
+          >
+            <span v-if="ns.publish === 2">
               <v-chip
                 v-if="ns.important"
                 color="red"
@@ -26,20 +29,8 @@
                 خـبر مهم
               </v-chip>
               {{ ns.title_translated }}
-
-              <div class="like-dislike d-flex mt-3 justify-end">
-                <keep-alive>
-                  <component
-                    :is="`likes`"
-                    content="short_news"
-                    :actions="ns.news_like"
-                    :id="ns.id"
-                  ></component>
-                </keep-alive>
-              </div>
-              <v-divider class="mt-3"></v-divider>
             </span>
-            <span v-if="ns.publish === 3 || ns.publish === 4">
+            <span v-if="ns.publish === 3">
               <v-chip
                 v-if="ns.important"
                 color="red"
@@ -51,22 +42,34 @@
                 خـبر مهم
               </v-chip>
               {{ ns.description_translated }}
-              <span class="source" v-if="ns.source_name"
-                >منبع: {{ ns.source_name }}</span
-              >
-
-              <div class="like-dislike d-flex mt-3 justify-end">
-                <keep-alive>
-                  <component
-                    :is="`likes`"
-                    content="short_news"
-                    :actions="ns.news_like"
-                    :id="ns.id"
-                  ></component>
-                </keep-alive>
-              </div>
-              <v-divider class="mt-3"></v-divider>
             </span>
+            <span v-if="ns.publish === 4">
+              <v-chip
+                v-if="ns.important"
+                color="red"
+                dark
+                label
+                small
+                class="my-2"
+              >
+                خـبر مهم
+              </v-chip>
+              {{ ns.title_translated }}
+              <br />
+              {{ ns.description_translated }}
+            </span>
+
+            <div class="like-dislike d-flex my-3 justify-end">
+              <keep-alive>
+                <component
+                  :is="`likes`"
+                  content="short_news"
+                  :actions="ns.news_like"
+                  :id="ns.id"
+                ></component>
+              </keep-alive>
+            </div>
+            <v-divider class="mt-4"></v-divider>
           </h4>
         </div>
       </div>

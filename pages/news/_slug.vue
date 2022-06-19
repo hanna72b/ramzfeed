@@ -1,7 +1,7 @@
 <template>
-  <v-row v-if="news_detail" class="last-news px-7">
-    <v-col cols="12" md="7">
-      <div class="news-brief">
+  <v-row v-if="news_detail" no-gutters class="last-news">
+    <v-col cols="12" md="6" lg="7">
+      <div class="news-brief mx-5">
         <div v-if="news_detail" class="mt-6">
           <div class="d-flex justify-space-between mb-5">
             <h6 class="my-2 text_color_grey--text">
@@ -46,7 +46,7 @@
         </div>
       </div>
     </v-col>
-    <v-col cols="12" md="4" lg="5" class="front">
+    <v-col cols="12" md="6" lg="5" class="front">
       <keep-alive>
         <component :is="`lastTweets`"></component>
       </keep-alive>

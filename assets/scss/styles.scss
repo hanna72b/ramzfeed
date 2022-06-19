@@ -274,10 +274,10 @@ a {
 .news-title {
   display: block;
   flex: 1 1 auto;
-  height: calc(100vh - 105px);
+  height: calc(100vh - 200px);
   overflow: auto;
   position: relative;
-  overflow-y:scroll !important;
+  overflow-y: scroll !important;
   overflow-x: hidden !important;
 
 

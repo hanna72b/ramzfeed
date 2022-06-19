@@ -1,7 +1,7 @@
 <template>
-  <v-row class="last-news px-7">
+  <v-row class="last-news" no-gutters>
     <v-col cols="12" md="7">
-      <div class="news-brief">
+      <div class="news-brief mx-5">
         <div v-if="news_detail" class="mt-6">
           <div class="d-flex justify-space-between mb-5">
             <h6 class="my-2 text_color_grey--text">
@@ -16,6 +16,11 @@
           <h2 class="mb-4 cyan--text">
             {{ news_detail.title_translated }}
           </h2>
+          <small>
+            {{
+              toJalali(new Date(news_detail.created_at).getTime() / 1000, true)
+            }}
+          </small>
 
           <div class="text_color_grey--text lh-2 text-justify">
             <div v-html="news_detail.brief_translated"></div>
@@ -63,7 +68,6 @@ export default {
   },
   methods: {
     async displayBrief() {
-      console.log('ssssssssssssssssssss')
       const response = await this.$axios.get(`/article/slug/${this.slug}`)
       this.news_detail = response.data.data
       console.log(this.news_detail)

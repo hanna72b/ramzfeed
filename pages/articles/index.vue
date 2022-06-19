@@ -38,6 +38,17 @@
               <v-divider class="mt-3"></v-divider>
             </div>
           </div>
+          <v-pagination
+            class="mx-auto d-block my-6"
+            color="cyan"
+            v-model="page"
+            @input="lastArticles"
+            :total-visible="7"
+            :length="last_page"
+            light
+            circle
+            dark
+          ></v-pagination>
         </div>
       </v-col>
       <v-col cols="12" md="6" lg="5">
@@ -67,6 +78,8 @@ export default {
   data: () => {
     return {
       articles: [],
+      page: 1,
+      last_page: null,
     }
   },
   async mounted() {
@@ -74,8 +87,11 @@ export default {
   },
   methods: {
     async lastArticles() {
-      const response = await this.$axios.get('/articles/last')
+      const response = await this.$axios.get(`/articles/last?page=${this.page}`)
       this.articles = response.data.data
+      this.page = response.data.pagination.current_page
+      this.last_page = response.data.pagination.last_page
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
   },
 }
