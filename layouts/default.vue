@@ -11,8 +11,10 @@
       style="border-right: 5px solid #ffbe00 !important"
     >
       <div class="logo-right text-center d-none d-md-block">
-        <img src="~/assets/images/logo2.png" width="96" />
-        <div class="fidinex-menu text-center">رمـز‌فـید</div>
+        <router-link to="/">
+          <img src="~/assets/images/logo.png" width="96" />
+          <div class="fidinex-menu text-center">رمـز‌فـید</div>
+        </router-link>
       </div>
       <div v-if="loggedInUser" class="panel-menu-in-right">
         <router-link to="/profile">پنل‌کاربری شما</router-link>
@@ -61,7 +63,9 @@
       <span class="berger-menu-txt">مـنو</span>
 
       <div class="logo-footer">
-        <img src="~/assets/images/logo2.png" width="96" />
+        <router-link to="/">
+          <img src="~/assets/images/logo2.png" width="96" />
+        </router-link>
       </div>
 
       <div class="fidinex-menu">RamzFeed</div>

@@ -74,6 +74,17 @@
         </div>
       </div>
     </div>
+    <v-pagination
+      class="mx-auto d-block my-6"
+      color="cyan"
+      v-model="page"
+      @input="lastNewsShort"
+      :total-visible="7"
+      :length="last_page"
+      light
+      circle
+      dark
+    ></v-pagination>
   </div>
 </template>
 
@@ -86,6 +97,8 @@ export default {
       loading: false,
       titles: 'd-flex',
       brief: 'd-none',
+      page: 1,
+      last_page: null,
     }
   },
 
@@ -95,8 +108,13 @@ export default {
 
   methods: {
     async lastNewsShort() {
-      const response = await this.$axios.get('/news-short/last')
+      const response = await this.$axios.get(
+        `/news-short/last?page=${this.page}`
+      )
       this.news_short = response.data.data
+      this.page = response.data.pagination.current_page
+      this.last_page = response.data.pagination.last_page
+      window.scrollTo({ top: 0, behavior: 'smooth' })
     },
   },
 }
