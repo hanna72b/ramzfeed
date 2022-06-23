@@ -47,23 +47,20 @@
       </div>
     </v-col>
     <v-col cols="12" md="6" lg="5" class="front">
+      <component :is="`live`"></component>
       <keep-alive>
         <component :is="`lastTweets`"></component>
-      </keep-alive>
-      <div class="divider-1"></div>
-      <keep-alive>
-        <component :is="`lastNewsShort`"></component>
       </keep-alive>
     </v-col>
   </v-row>
 </template>
 
 <script>
-import lastNewsShort from '~/components/front/LastNewsShort'
+import live from '~/components/front/Live'
 import lastTweets from '~/components/front/LastTweets'
 export default {
   components: {
-    lastNewsShort,
+    live,
     lastTweets,
   },
   data: () => {
