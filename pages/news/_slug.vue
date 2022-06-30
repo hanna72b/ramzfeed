@@ -3,25 +3,32 @@
     <v-col cols="12" md="6" lg="7">
       <div class="news-brief mx-5">
         <div v-if="news_detail" class="mt-6">
-          <div class="d-flex justify-space-between mb-5">
+          <div class="d-flex justify-space-between mb-3">
             <h6 class="my-2 text_color_grey--text">
               {{ news_detail.source_name }}
+              <br />
+              <div class="mt-2">
+                {{
+                  toJalali(
+                    new Date(news_detail.created_at).getTime() / 1000,
+                    true
+                  )
+                }}
+              </div>
             </h6>
+
             <v-btn small to="/">
               <span>بازگشـت</span>
               <v-icon right>mdi-arrow-left</v-icon>
             </v-btn>
           </div>
+
           <div :href="news_detail.url" class="text_color_grey--text d-flex">
             <h2 class="mb-4 cyan--text">
               {{ news_detail.title_translated }}
             </h2>
           </div>
-          <small>
-            {{
-              toJalali(new Date(news_detail.created_at).getTime() / 1000, true)
-            }}
-          </small>
+
           <div class="text_color_grey--text lh-2 text-justify">
             <div v-html="news_detail.brief_translated"></div>
           </div>

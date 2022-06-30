@@ -34,7 +34,11 @@
                   </span>
                 </nuxt-link>
               </div>
-
+              <div class="text-left">
+                <small class="ml-3 mt-2 text-left">{{
+                  article.source_name
+                }}</small>
+              </div>
               <v-divider class="mt-3"></v-divider>
             </div>
           </div>

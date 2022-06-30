@@ -15,8 +15,10 @@
       >
         <div class="d-flex">
           <router-link :to="`/news/${post.slug}`" class="text_color_grey--text">
-            <v-avatar size="30">
-              <v-img :src="getPath('long_news') + post.image_path"></v-img>
+            <v-avatar v-if="post.crawling_source" size="30">
+              <v-img
+                :src="getPath('crawling_source') + post.crawling_source.logo"
+              ></v-img>
             </v-avatar>
 
             <span class="font-weight-regular mr-2">

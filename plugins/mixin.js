@@ -23,6 +23,10 @@ Vue.mixin({
         case 'influencer':
           prefix = 'twitter/influencer/'
           break
+
+        case 'crawling_source':
+          prefix = 'crawling_sources/'
+          break
       }
 
       return `${this.$baseUrl}/storage/uploads/${prefix}`
