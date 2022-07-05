@@ -190,5 +190,11 @@ Vue.mixin({
         console.log('rrrrrrrrrrrrrrrrrrrrrrrrrr')
       }
     },
+
+    numberFormat(number) {
+      return new Intl.NumberFormat('fa-IR', {
+        maximumSignificantDigits: 3,
+      }).format(number)
+    },
   },
 })

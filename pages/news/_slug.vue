@@ -56,7 +56,7 @@
     <v-col cols="12" md="6" lg="5" class="front">
       <component :is="`live`"></component>
       <keep-alive>
-        <component :is="`lastTweets`"></component>
+        <component :is="`bestArticles`"></component>
       </keep-alive>
     </v-col>
   </v-row>
@@ -64,11 +64,11 @@
 
 <script>
 import live from '~/components/front/Live'
-import lastTweets from '~/components/front/LastTweets'
+import bestArticles from '~/components/BestArticles'
 export default {
   components: {
     live,
-    lastTweets,
+    bestArticles,
   },
   data: () => {
     return {

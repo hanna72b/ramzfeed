@@ -1,7 +1,7 @@
 <template>
   <div class="mx-5 tweets-page">
     <v-row justify="center">
-      <v-col cols="12" md="8" lg="5" xl="4">
+      <v-col cols="12" md="8" lg="5" xl="4" class="bg-main">
         <div class="d-flex justify-space-between">
           <h3 class="mt-3 mb-1 text_color_grey--text">آخرین توییت ها</h3>
         </div>
@@ -14,41 +14,41 @@
           <div v-if="tweets.length === 0">
             <loading></loading>
           </div>
-          <div v-else>
+          <div v-else class="tweet-cards">
             <div
               v-for="(tweet, index) in tweets"
               :key="index"
               class="pt-4 font-font-weight-light"
             >
-              <div class="profile d-flex">
-                <span>
-                  <v-avatar size="70">
-                    <v-img
-                      :src="
-                        getPath('influencer') + tweet.influencer.profile_image
-                      "
-                      width="100%"
-                      class="mx-auto d-block"
-                    ></v-img>
-                  </v-avatar>
-                </span>
-                <span class="mr-3 mt-1 tex-right">
-                  <h2 class="cyan--text n">
+              <div class="profile pt-2">
+                <span class="ml-3">
+                  <h5 class="text_color_grey--text text-left d-inline-block">
+                    {{ tweet.influencer.screen_name }}@
+                  </h5>
+                  <h3 class="text-left d-inline-block">
                     {{ tweet.influencer.name }}
-                  </h2>
-                  <h4 class="text_color_grey--text sn">
-                    {{ tweet.influencer.screen_name }}
-                  </h4>
-
-                  <h4 class="text_color_grey--text f">
-                    {{ tweet.influencer.followers }} followers
-                  </h4>
+                  </h3>
+                  <h5 class="text-left mt-1">
+                    {{ numberFormat(tweet.influencer.followers)
+                    }}<small class="ml-1 text_color_grey--text text-left"
+                      >Followers</small
+                    >
+                  </h5>
                 </span>
+                <v-avatar size="60" class="ml-2">
+                  <v-img
+                    :src="
+                      getPath('influencer') + tweet.influencer.profile_image
+                    "
+                    width="100%"
+                    class="mx-auto d-block"
+                  ></v-img>
+                </v-avatar>
               </div>
 
               <div class="">
                 <div
-                  class="tweet mt-8 mb-3"
+                  class="tweet mt-2 mb-2"
                   dir="rtl"
                   v-html="tweet.text_translated"
                 ></div>
@@ -79,10 +79,12 @@
                   </div>
                 </div>
               </div>
-              <div class="text-left cyan--text mt-4 ml-5">
-                {{
+              <div class="text-left grey--text mt-3 ml-3">
+                <small>Twitter Web App</small>
+                <br />
+                <small>{{
                   toJalali(new Date(tweet.published_at).getTime() / 1000, true)
-                }}
+                }}</small>
               </div>
               <v-divider class="mt-3"></v-divider>
             </div>

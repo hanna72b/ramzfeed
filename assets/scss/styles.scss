@@ -295,7 +295,7 @@ a {
 .tweets-in-front {
   display: block;
   flex: 1 1 auto;
-  height: calc(80vh - 150px);
+  height: calc(85vh - 150px);
   overflow: auto;
   position: relative;
 }
@@ -331,38 +331,6 @@ a {
 
 
 
-
-
-
-// .tweet-cards {
-
-//   .inner {
-//     width: 33%;
-//     display: inline-flex;
-//     padding: 0 10px;
-//     height: auto;
-
-//     .in-card {
-//       border: 1px solid red;
-//     }
-
-//     .attachment {
-//       border: 1px solid red;
-
-
-//     }
-//   }
-
-//   .tweets {
-//     border: 1px solid blue !important;
-
-
-//   }
-
-
-
-// }
-
 .tweet-card-dialog {
   .tweet {
     line-height: 1.8;
@@ -373,38 +341,13 @@ a {
 }
 
 .tweets-page {
-  .tweet {
-    line-height: 1.8;
-    margin-top: 20px;
-    direction: rtl;
 
-
+  .bg-main {
+    background-color: #13202B !important;
+    height: 100vh;
   }
 
-  .is_number {
-    font-size: 1.5rem;
-    border: 1px solid yellow;
-    direction: rtl;
-  }
 
-  .active {
-    color: #f79803 !important;
-  }
-
-  .profile {
-
-
-    padding-top: 5px !important;
-
-
-    text-align: center;
-
-    .n,
-    .sn,
-    .f {
-      text-align: right !important;
-    }
-  }
 }
 
 .tweet-link {
@@ -447,7 +390,7 @@ a {
 
 .right-menu-active {
   i {
-    color: cyan !important;
+    color: #b9ccd4 !important;
   }
 
   &::before {
@@ -455,19 +398,19 @@ a {
   }
 
   .name-of-link {
-    color: cyan;
+    color: #b9ccd4;
   }
 }
 
 .logo-right {
-  height: 130px;
+  height: 94px;
   width: 98%;
 
   .fidinex-menu {
-    background-color: #161010;
+    background-color: #bbccd4;
     position: relative;
-    top: -9px;
-    padding-bottom: 10px;
+    top: -20px;
+    padding: 5px 0px;
     width: 95px;
     color: #6c6c6c;
   }
@@ -509,15 +452,15 @@ a {
 }
 
 
-.short-news-front {
-  border: 1px solid red !important;
+// .short-news-front {
+//   border: 1px solid red !important;
 
 
-  .source {
-    font-size: 12px;
-    color: #00b7ff;
-  }
-}
+//   .source {
+//     font-size: 12px;
+//     color: #00b7ff;
+//   }
+// }
 
 .mr-auth-layout {
   .container {
@@ -532,7 +475,7 @@ a {
 
 
 .panel-menu-in-right {
-  background: #e65101;
+  background: #0ab1ffb3;
   font-size: 13px;
   text-align: center;
   padding: 10px 0;
@@ -615,7 +558,7 @@ a {
 }
 
 .tweet-bg-in-front {
-  background-color: #1a1a1a;
+  background-color: #13202B;
   padding: 16px;
   border-radius: 4px;
 }
@@ -625,4 +568,71 @@ a {
   position: fixed;
   width: 100% !important;
   z-index: 2;
+}
+
+
+.tweet-cards {
+
+
+  .profile {
+
+    display: flex;
+    justify-content: end;
+  }
+
+  .like-retweets {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+
+  }
+
+  .tweet {
+
+    width: 97%;
+    margin: auto;
+    display: block
+  }
+
+  background: none !important;
+  border-bottom: 1px solid #243642 !important;
+  border-radius: 0px !important;
+}
+
+
+.best-articles {
+  .image {
+    width: 100%;
+
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      display: inline-block;
+      background: -moz-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      /* FF3.6+ */
+      background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, rgba(0, 0, 0, 0)), color-stop(100%, rgba(0, 0, 0, 1)));
+      /* Chrome,Safari4+ */
+      background: -webkit-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      /* Chrome10+,Safari5.1+ */
+      background: -o-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      /* Opera 11.10+ */
+      background: -ms-linear-gradient(top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      /* IE10+ */
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 1) 100%);
+      /* W3C */
+      filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#a6000000', endColorstr='#00000000', GradientType=0);
+      /* IE6-9 */
+    }
+  }
+
+  .a-title {
+    color: orange;
+    position: relative;
+    top: -8vh;
+    right: 12px;
+  }
 }
