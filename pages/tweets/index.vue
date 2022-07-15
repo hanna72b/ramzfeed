@@ -3,10 +3,10 @@
     <v-row justify="center">
       <v-col cols="12" md="8" lg="5" xl="4" class="bg-main">
         <div class="d-flex justify-space-between">
-          <h3 class="mt-3 mb-1 text_color_grey--text">آخرین توییت ها</h3>
+          <h3 class="mt-3 mb-1 cyan--text">آخرین توییت ها</h3>
         </div>
 
-        <h5 class="orange_color_1--text mb-3 font-weight-light">
+        <h5 class="white--text mb-3 font-weight-light">
           در این بخش می‌توانید به صوررت لحظه‌ای ،توییت‌های تریدرهای حرفه ای را
           به زبان فارسی مشاهده کنید
         </h5>
@@ -80,16 +80,30 @@
                 </div>
               </div>
               <div class="text-left grey--text mt-3 ml-3">
-                <small>Twitter Web App</small>
+                <!-- <small>Twitter Web App</small> -->
                 <br />
                 <small>{{
-                  toJalali(new Date(tweet.published_at).getTime() / 1000, true)
+                  toJalali(
+                    new Date(tweet.twitter_created_at).getTime() / 1000,
+                    true
+                  )
                 }}</small>
               </div>
               <v-divider class="mt-3"></v-divider>
             </div>
           </div>
         </div>
+        <v-pagination
+          class="mx-auto d-block my-6"
+          color="cyan"
+          v-model="page"
+          @input="lastTweets"
+          :total-visible="7"
+          :length="last_page"
+          light
+          circle
+          dark
+        ></v-pagination>
       </v-col>
 
       <!-- ==============================================DETAILS======================================= -->
@@ -146,109 +160,115 @@ export default {
       dialog_img: false,
       tweet: null,
       active: [],
-      isMobile: false,
-      display_tweet_in_mobile: false,
-      tweet_detail: 'd-none',
-      tweet_list: 'd-block',
+      page: 1,
+      last_page: null,
+      // isMobile: false,
+      // display_tweet_in_mobile: false,
+      // tweet_detail: 'd-none',
+      // tweet_list: 'd-block',
       detail_loading: false,
-      slug: null,
+      // slug: null,
     }
   },
 
   async mounted() {
-    if (process.browser) {
-      window.addEventListener('resize', this.onResize, { passive: true })
-    }
-
-    this.tweet_list = 'd_block'
+    await this.lastTweets()
+    // if (process.browser) {
+    //   window.addEventListener('resize', this.onResize, { passive: true })
+    // }
+    // this.tweet_list = 'd_block'
   },
 
-  watch: {
-    $route: {
-      immediate: true,
-      async handler(tweet) {
-        // document.addEventListener('resize', this.onResize, { passive: true })
-        this.slug = tweet.query.tweet
-        console.log(tweet.query.tweet, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrr')
-        this.onResize()
-        if (this.slug) {
-          console.log('has SLUG')
-          await this.getTweet()
-        } else {
-          console.log('DONT has SLUG')
-          await this.lastTweets()
-        }
-        // make actions with newVal.page
-      },
-    },
-  },
+  // watch: {
+  //   $route: {
+  //     immediate: true,
+  //     async handler(tweet) {
+  //       // document.addEventListener('resize', this.onResize, { passive: true })
+  //       this.slug = tweet.query.tweet
+  //       console.log(tweet.query.tweet, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrr')
+  //       this.onResize()
+  //       if (this.slug) {
+  //         console.log('has SLUG')
+  //         await this.getTweet()
+  //       } else {
+  //         console.log('DONT has SLUG')
+  //         await this.lastTweets()
+  //       }
+  //       // make actions with newVal.page
+  //     },
+  //   },
+  // },
   methods: {
-    onResize: debounce(function () {
-      if (process.browser) {
-        this.isMobile = window.innerWidth < 959 ? true : false
-      }
-      console.log(
-        this.isMobile,
-        'iiiiiiiiiiiiiiiiiiissssssssssssssssssssssssssssssssssssss'
-      )
-      if (this.isMobile && this.slug) {
-        console.log('a11111')
-        this.tweet_detail = 'd-block'
-        this.tweet_list = 'd-none'
-        this.getTweet()
-      } else if (this.isMobile && !this.slug) {
-        console.log('a22222222')
-        this.tweet_detail = 'd-none'
-        this.tweet_list = 'd-block'
-      }
-
-      if (!this.isMobile && this.slug) {
-        console.log('a333333')
-        this.tweet_detail = 'd-none'
-        this.tweet_list = 'd-block'
-        this.lastTweets()
-      } else if (!this.isMobile && !this.slug) {
-        console.log('a4444444444444')
-        this.tweet_detail = 'd-none'
-        this.tweet_list = 'd-block'
-      }
-    }, 500),
-
-    gotoAllTweets() {
-      this.tweet_detail = 'd-none'
-      this.tweet_list = 'd-block'
-    },
-
-    goToMainTweets() {
-      this.$router.push('tweets')
-    },
-    async gotoTweet(slug) {
-      // if (this.isMobile) {
-      //   this.tweet_list = 'd-none'
-      //   this.tweet_detail = 'd-block'
-      // }
-
-      // this.onResize()
-      this.tweet = null
-      this.active = []
-      this.active[slug] = 'active'
-      this.$router.push({ query: { tweet: slug } })
-
-      // this.tweet = null
-      await this.getTweet()
-    },
     async lastTweets() {
-      const response = await this.$axios.get('/tweets/index')
+      const response = await this.$axios.get(`/tweets/index?page=${this.page}`)
       this.tweets = response.data.data
+      this.page = response.data.pagination.current_page
+      this.last_page = response.data.pagination.last_page
     },
-    async getTweet() {
-      this.tweet = null
-      this.detail_loading = true
-      const response = await this.$axios.get(`/tweets/show/slug/${this.slug}`)
-      this.tweet = response.data.data
 
-      this.detail_loading = false
-    },
+    // onResize: debounce(function () {
+    //   if (process.browser) {
+    //     this.isMobile = window.innerWidth < 959 ? true : false
+    //   }
+    //   console.log(
+    //     this.isMobile,
+    //     'iiiiiiiiiiiiiiiiiiissssssssssssssssssssssssssssssssssssss'
+    //   )
+    //   if (this.isMobile && this.slug) {
+    //     console.log('a11111')
+    //     this.tweet_detail = 'd-block'
+    //     this.tweet_list = 'd-none'
+    //     this.getTweet()
+    //   } else if (this.isMobile && !this.slug) {
+    //     console.log('a22222222')
+    //     this.tweet_detail = 'd-none'
+    //     this.tweet_list = 'd-block'
+    //   }
+
+    //   if (!this.isMobile && this.slug) {
+    //     console.log('a333333')
+    //     this.tweet_detail = 'd-none'
+    //     this.tweet_list = 'd-block'
+    //     this.lastTweets()
+    //   } else if (!this.isMobile && !this.slug) {
+    //     console.log('a4444444444444')
+    //     this.tweet_detail = 'd-none'
+    //     this.tweet_list = 'd-block'
+    //   }
+    // }, 500),
+
+    // gotoAllTweets() {
+    //   this.tweet_detail = 'd-none'
+    //   this.tweet_list = 'd-block'
+    // },
+
+    // goToMainTweets() {
+    //   this.$router.push('tweets')
+    // },
+    // async gotoTweet(slug) {
+    //   // if (this.isMobile) {
+    //   //   this.tweet_list = 'd-none'
+    //   //   this.tweet_detail = 'd-block'
+    //   // }
+
+    //   // this.onResize()
+    //   this.tweet = null
+    //   this.active = []
+    //   this.active[slug] = 'active'
+    //   this.$router.push({ query: { tweet: slug } })
+
+    //   // this.tweet = null
+    //   await this.getTweet()
+    // },
+
+    // async getTweet() {
+    //   this.tweet = null
+    //   this.detail_loading = true
+    //   const response = await this.$axios.get(`/tweets/show/slug/${this.slug}`)
+    //   this.tweet = response.data.data
+
+    //   this.detail_loading = false
+    // },
   },
 }
 </script>

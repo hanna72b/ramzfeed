@@ -97,15 +97,17 @@
                           {{ ns.description_translated }}
                         </span>
 
-                        <div class="like-dislike d-flex my-3 justify-end">
-                          <keep-alive>
-                            <component
-                              :is="`likes`"
-                              content="short_news"
-                              :actions="ns.news_like"
-                              :id="ns.id"
-                            ></component>
-                          </keep-alive>
+                        <div class="d-flex justify-end mt-4">
+                          <small>{{
+                            toJalali(
+                              new Date(ns.created_at).getTime() / 1000,
+                              true
+                            )
+                          }}</small>
+                          <span label class="cyan--text mr-3">
+                            منـبع:
+                            {{ ns.source_name }}
+                          </span>
                         </div>
                         <v-divider class="mt-4"></v-divider>
                       </h4>

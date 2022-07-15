@@ -1,7 +1,7 @@
 <template>
   <div class="mx-5">
-    <h3 class="mt-3 mb-2 text_color_grey--text">آخرین خبرها</h3>
-    <h5 class="orange_color_1--text mb-3 font-weight-light">
+    <h3 class="mt-3 mb-2 cyan--text">آخرین خبرها</h3>
+    <h5 class="white--text mb-3 font-weight-light">
       خبرهای بیش از پنجاه سایت خبری را در این قسمت مشاهده کنید
     </h5>
     <div class="news-title">

@@ -1,13 +1,13 @@
 <template>
   <div class="mx-5 tweet-bg-in-front">
     <div class="d-flex justify-space-between">
-      <h3 class="mb-2 text_color_grey--text">تحلیل‌ها و خـبرهای توییتر</h3>
+      <h3 class="mb-2 cyan--text">تحلیل‌ها و خـبرهای توییتر</h3>
       <!-- <v-btn small to="/tweets" color="orange darken-4" depressed class="mt-3">
         مشاهده همه توییت‌ها
       </v-btn> -->
     </div>
 
-    <h5 class="orange_color_1--text mb-4 font-weight-light">
+    <h5 class="white--text mb-4 font-weight-light">
       در این بخش می‌توانید به صوررت لحظه‌ای ،توییت‌های تریدرهای حرفه ای را به
       زبان فارسی مشاهده کنید
     </h5>
@@ -52,13 +52,21 @@
             </div>
           </div>
           <div class="text-left grey--text mt-3 ml-3">
-            <small>Twitter Web App</small>
+            <!-- <small>Twitter Web App</small> -->
             <br />
             <small>{{
-              toJalali(new Date(tweet.published_at).getTime() / 1000, true)
+              toJalali(
+                new Date(tweet.twitter_created_at).getTime() / 1000,
+                true
+              )
             }}</small>
           </div>
         </v-card>
+      </div>
+      <div class="text-center">
+        برای مشاهده همه توییت‌ها به
+        <router-link to="/tweets"> صفحه توییت‌ها</router-link>
+        مراجعه کنید
       </div>
     </div>
   </div>
