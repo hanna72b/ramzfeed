@@ -7,8 +7,6 @@
         </keep-alive>
       </v-col>
       <v-col cols="12" md="6" lg="5">
-        <component :is="`live`"></component>
-
         <keep-alive>
           <component :is="`lastTweets`"></component>
         </keep-alive>
@@ -23,13 +21,12 @@
 
 <script>
 import lastNews from '~/components/front/LastNews'
-import live from '~/components/front/Live'
+
 import lastTweets from '~/components/front/LastTweets'
 
 export default {
   components: {
     lastNews,
-    live,
     lastTweets,
   },
   data: () => {
