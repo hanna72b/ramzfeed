@@ -20,7 +20,7 @@
               :key="index"
               class="pt-4 font-font-weight-light"
             >
-              <div class="profile pt-2">
+              <div v-if="tweet.influencer" class="profile pt-2">
                 <span class="ml-3">
                   <h5 class="text_color_grey--text text-left d-inline-block">
                     {{ tweet.influencer.screen_name }}@
@@ -46,7 +46,7 @@
                 </v-avatar>
               </div>
 
-              <div class="">
+              <div>
                 <div
                   class="tweet mt-2 mb-2"
                   dir="rtl"
@@ -67,20 +67,11 @@
                         attachment.url
                       }}</a>
                     </div>
-                    <div v-if="attachment.type === 'img'" class="mt-2">
-                      <v-img
-                        :src="getPath('twitter') + attachment.path"
-                        @click="dialog_img = true"
-                        class="cursor-pointer mx-auto"
-                        :aspect-ratio="16 / 9"
-                        width="100%"
-                      ></v-img>
-                    </div>
+                    <div v-if="attachment.type === 'img'" class="mt-2"></div>
                   </div>
                 </div>
               </div>
               <div class="text-left grey--text mt-3 ml-3">
-                <!-- <small>Twitter Web App</small> -->
                 <br />
                 <small>{{
                   toJalali(
@@ -108,51 +99,12 @@
 
       <!-- ==============================================DETAILS======================================= -->
     </v-row>
-
-    <v-dialog
-      dark
-      overlay-color="blue-grey  darken-4"
-      v-model="dialog_img"
-      width="95%"
-      scrollable
-      overlay-opacity="0.8"
-    >
-      <v-card v-if="tweet" dark color="grey_deep_1">
-        <v-card-text class="px-3 py-3 tweet-card-dialog">
-          <div v-if="tweet.attachment" class="media mt-8">
-            <div v-for="(attachment, index) in tweet.attachment" :key="index">
-              <div v-if="attachment.type === 'url'" class="mt-2">
-                <a :href="attachment.url" target="_blank">{{
-                  attachment.url
-                }}</a>
-              </div>
-              <div v-if="attachment.type === 'img'" class="mt-2">
-                <v-img :src="getPath('twitter') + attachment.path"></v-img>
-              </div>
-            </div>
-          </div>
-        </v-card-text>
-
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="orange_color_1" text @click="dialog_img = false"
-            >بستن</v-btn
-          >
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
   </div>
 </template>
 
 <script>
-import tweet from '@/components/TweetCard.vue'
-import loading from '@/components/Loading.vue'
-import debounce from 'lodash/debounce'
-
 export default {
-  components: {
-    tweet,
-  },
+  components: {},
   data: () => {
     return {
       tweets: [],
@@ -162,113 +114,24 @@ export default {
       active: [],
       page: 1,
       last_page: null,
-      // isMobile: false,
-      // display_tweet_in_mobile: false,
-      // tweet_detail: 'd-none',
-      // tweet_list: 'd-block',
+
       detail_loading: false,
-      // slug: null,
     }
   },
 
   async mounted() {
     await this.lastTweets()
-    // if (process.browser) {
-    //   window.addEventListener('resize', this.onResize, { passive: true })
-    // }
-    // this.tweet_list = 'd_block'
   },
 
-  // watch: {
-  //   $route: {
-  //     immediate: true,
-  //     async handler(tweet) {
-  //       // document.addEventListener('resize', this.onResize, { passive: true })
-  //       this.slug = tweet.query.tweet
-  //       console.log(tweet.query.tweet, 'rrrrrrrrrrrrrrrrrrrrrrrrrrrr')
-  //       this.onResize()
-  //       if (this.slug) {
-  //         console.log('has SLUG')
-  //         await this.getTweet()
-  //       } else {
-  //         console.log('DONT has SLUG')
-  //         await this.lastTweets()
-  //       }
-  //       // make actions with newVal.page
-  //     },
-  //   },
-  // },
   methods: {
     async lastTweets() {
       const response = await this.$axios.get(`/tweets/index?page=${this.page}`)
       this.tweets = response.data.data
       this.page = response.data.pagination.current_page
       this.last_page = response.data.pagination.last_page
+
+      console.log(this.last_page, 'eee')
     },
-
-    // onResize: debounce(function () {
-    //   if (process.browser) {
-    //     this.isMobile = window.innerWidth < 959 ? true : false
-    //   }
-    //   console.log(
-    //     this.isMobile,
-    //     'iiiiiiiiiiiiiiiiiiissssssssssssssssssssssssssssssssssssss'
-    //   )
-    //   if (this.isMobile && this.slug) {
-    //     console.log('a11111')
-    //     this.tweet_detail = 'd-block'
-    //     this.tweet_list = 'd-none'
-    //     this.getTweet()
-    //   } else if (this.isMobile && !this.slug) {
-    //     console.log('a22222222')
-    //     this.tweet_detail = 'd-none'
-    //     this.tweet_list = 'd-block'
-    //   }
-
-    //   if (!this.isMobile && this.slug) {
-    //     console.log('a333333')
-    //     this.tweet_detail = 'd-none'
-    //     this.tweet_list = 'd-block'
-    //     this.lastTweets()
-    //   } else if (!this.isMobile && !this.slug) {
-    //     console.log('a4444444444444')
-    //     this.tweet_detail = 'd-none'
-    //     this.tweet_list = 'd-block'
-    //   }
-    // }, 500),
-
-    // gotoAllTweets() {
-    //   this.tweet_detail = 'd-none'
-    //   this.tweet_list = 'd-block'
-    // },
-
-    // goToMainTweets() {
-    //   this.$router.push('tweets')
-    // },
-    // async gotoTweet(slug) {
-    //   // if (this.isMobile) {
-    //   //   this.tweet_list = 'd-none'
-    //   //   this.tweet_detail = 'd-block'
-    //   // }
-
-    //   // this.onResize()
-    //   this.tweet = null
-    //   this.active = []
-    //   this.active[slug] = 'active'
-    //   this.$router.push({ query: { tweet: slug } })
-
-    //   // this.tweet = null
-    //   await this.getTweet()
-    // },
-
-    // async getTweet() {
-    //   this.tweet = null
-    //   this.detail_loading = true
-    //   const response = await this.$axios.get(`/tweets/show/slug/${this.slug}`)
-    //   this.tweet = response.data.data
-
-    //   this.detail_loading = false
-    // },
   },
 }
 </script>
