@@ -2,6 +2,13 @@ import colors from 'vuetify/es5/util/colors'
 import fa from 'vuetify/es5/locale/fa'
 
 export default {
+  mode: 'spa',
+  /*
+   ** Nuxt target
+   ** See https://nuxtjs.org/api/configuration-target
+   */
+  target: 'server',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     titleTemplate: '%s ',
